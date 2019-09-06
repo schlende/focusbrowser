@@ -7,7 +7,33 @@ webview {
   bottom: 0;
 }
 
-.browser-tab{
+.browser-controls{
+  display: flex;
+}
+
+.browser-window{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
   position: relative;
   flex: 1;
+}
+
+.browser-tab{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.url-bar{
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.url-form{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  width: 100%;
 }
