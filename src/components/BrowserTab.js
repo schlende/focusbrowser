@@ -9,6 +9,8 @@ export default class BrowserTab extends React.Component {
   constructor(props) {
     super(props);
 
+    this.blacklist = ["trump", "news.ycombinator.com", "youtube.com"];
+
     this.state = { currentUrl: "https://www.google.com" }
   }
 
@@ -44,7 +46,10 @@ export default class BrowserTab extends React.Component {
 
     var url = this.state.currentUrl;
 
-    if(!url.includes('.')){
+    if(this.blacklist.includes(url)){
+      console.log('blocked')
+      return;
+    }else if(!url.includes('.')){
       url = "https://www.google.com/search?q=" + url;
     }else if (!/^https?:\/\//i.test(url)) {
       url = 'http://' + url;
