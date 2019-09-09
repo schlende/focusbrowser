@@ -8,11 +8,27 @@ class Timer extends React.Component {
     super(props);
 
     this.onSessionEnd = props.onSessionEnd;
-    this.state = {remainingTime: 30}
+    var time = 1 * 60;
+    this.state = {startTime: time, remainingTime: time}
   }
 
-  startTimer(length){
+  componentDidMount() {
+    this.timer = this.startTimer();
+  }
 
+  componentWillUnmount() {
+    if(this.timer){
+      clearInterval(this.timer);
+    }
+  }
+
+  startTimer(){
+    return setInterval(() => {
+      this.setState({remainingTime: this.state.remainingTime - 1});
+      if(this.state.remainingTime === 0){
+        this.onSessionEnd();
+      }
+    }, 1000);
   }
 
   render() {
