@@ -1,5 +1,6 @@
 import React from 'react';
 import './BrowserTab.css';
+import {Button} from 'react-materialize';
 
 
 const { remote } = require('electron');
@@ -18,6 +19,13 @@ export default class BrowserTab extends React.Component {
     var view = this.browser();
     view.addEventListener('did-finish-load', () => {
       this.setState({currentUrl: view.src});
+    });
+
+    view.addEventListener('load-commit', (event) => {
+      if(this._urlInBlacklist(event.url)){
+        view.goBack();
+        console.log("Blocked access to: " + event.url);
+      }
     });
   }
 
@@ -46,7 +54,7 @@ export default class BrowserTab extends React.Component {
 
     var url = this.state.currentUrl;
 
-    if(this.blacklist.includes(url)){
+    if(this._urlInBlacklist(url)){
       console.log('blocked')
       return;
     }else if(!url.includes('.')){
@@ -58,16 +66,21 @@ export default class BrowserTab extends React.Component {
     this.browser().src = url;
   }
 
+  _urlInBlacklist = (url) => {
+    var blacklistterms = this.blacklist.map(term => url.includes(term));
+    return blacklistterms.includes(true);
+  }
+
   render() {
     return (
       <div className="browser-tab">
         <span className="browser-controls">
-          <button onClick={this.handleBack}>Back</button>
-          <button onClick={this.handleForward}>Forward</button>
-          <button onClick={this.handleReload}>Reload</button>
+          <Button onClick={this.handleBack}>Back</Button>
+          <Button onClick={this.handleForward}>Forward</Button>
+          <Button onClick={this.handleReload}>Reload</Button>
           <form onSubmit={this._handleUrlSubmit} className="url-form">
             <input className="url-bar" type="text" value={this.state.currentUrl} onChange={this._handleUrlValueChange} />
-            <input type="submit" value="Go" />
+            <Button>Go</Button>
           </form>
         </span>
         <div className="browser-window">
