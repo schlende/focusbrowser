@@ -1,12 +1,13 @@
 import React from 'react';
+import {BrowserView} from 'electron';
 import './BrowserTab.css';
 import {Button} from 'react-materialize';
-
+import contextMenu from 'electron-context-menu';
 
 const { remote } = require('electron');
 const { BrowserWindow, BrowserView } = require('electron').remote;
 
-export default class BrowserTab extends React.Component {
+export default class BrowserTab extends BrowserView {
   constructor(props) {
     super(props);
 
@@ -27,6 +28,11 @@ export default class BrowserTab extends React.Component {
         console.log("Blocked access to: " + event.url);
       }
     });
+
+    // view.addEventListener('new-window', (event) => {
+    //   console.log("Attempt to open new window");
+    // });
+
   }
 
   browser = () => {
@@ -72,6 +78,11 @@ export default class BrowserTab extends React.Component {
   }
 
   render() {
+
+    contextMenu({
+      window: this.browser()
+    });
+
     return (
       <div className="browser-tab">
         <span className="browser-controls">
@@ -85,7 +96,7 @@ export default class BrowserTab extends React.Component {
         </span>
         <div className="browser-window">
           <input type="text" />
-          <webview id="browser" src="https://google.com" autosize="on"></webview> 
+          <webview id="browser" src="https://google.com" autosize="on" allowpopups="true"></webview> 
         </div>
       </div>
     )

@@ -8,7 +8,7 @@ class Timer extends React.Component {
     super(props);
 
     this.onSessionEnd = props.onSessionEnd;
-    var time = 1 * 60;
+    var time = 15 * 60;
     this.state = {startTime: time, remainingTime: time}
   }
 

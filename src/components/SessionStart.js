@@ -6,12 +6,13 @@ class SessionStart extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {sessionTime: "30", task: null}
+    this.state = {sessionTime: "15", task: null}
 
     this.onSessionStart = props.onSessionStart;
   }
 
-  _handleSessionStart = () => {
+  _handleSessionStart = (event) => {
+    event.preventDefault();
     if(this.onSessionStart){
       this.onSessionStart(parseInt(this.sessionTime));
     }
@@ -25,7 +26,7 @@ class SessionStart extends React.Component {
 
   render() {
     return (
-      <div>
+      <form onSubmit={this._handleSessionStart}>
         <div>
           For the next
           <span>
@@ -46,10 +47,10 @@ class SessionStart extends React.Component {
             <TextInput placeholder="Business plan research" onChange={(event) => this._handleChange("task", event.target.value)} />
           </span>
         </div>
-        <Button disabled={!this.state.task} onClick={this._handleSessionStart}>
+        <Button disabled={!this.state.task}>
           Start Session
         </Button>
-      </div>
+      </form>
     )
   }
 }
