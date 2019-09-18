@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { centerIcon } from '~/browserui/mixins';
 
 // Toolbar
 export const TOOLBAR_HEIGHT = 38;
@@ -19,6 +20,7 @@ export const WORKSPACE_MAX_ICONS_COUNT = 9;
 export const ADDRESS_BAR_HEIGHT = 30;
 
 
+
 export const Icon = styled('div')`
   width: 100%;
   height: 100%;
@@ -36,6 +38,7 @@ export const Icon = styled('div')`
     opacity: number;
     autoInvert?: boolean;
   }) => css`
+    ${centerIcon(size)};
     opacity: ${disabled ? 0.25 : opacity};
   `};
 `;
@@ -62,4 +65,7 @@ export const Circle = styled('div')`
   transform: translate(-50%, -50%);
   overflow: hidden;
   transition: 0.2s background-color;
+  &:hover {
+    background-color: 'rgba(0, 0, 0, 0.06)'};
+  }
 `;

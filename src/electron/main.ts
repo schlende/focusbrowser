@@ -16,8 +16,12 @@ export default class Main {
 
   private static onReady() {
     Main.mainWindow = new BrowserWindow({ 
+      frame: false,
+      minWidth: 400,
+      minHeight: 450,
       width: 1000, 
       height: 800,
+      titleBarStyle: 'hiddenInset',
       webPreferences: {
         plugins: true,
         nodeIntegration: true,
@@ -28,7 +32,7 @@ export default class Main {
 
     let view = new BrowserView();
     Main.mainWindow.setBrowserView(view);
-    view.setBounds({ x: 0, y: 50, width: 1000, height: 750 });
+    view.setBounds({ x: 0, y: 80, width: 1000, height: 720 });
     view.setAutoResize({
       width: true,
       height: true,

@@ -9,8 +9,10 @@ export const StyledToolbar = styled('div')`
   align-items: center;
   color: rgba(0, 0, 0, 0.8);
   width: 100%;
-  height: 50px;
+  height: 38px;
+  background-color: #eeeeee;
   padding-right: ${platform() !== 'darwin' ? 138 : 0}px;
+  -webkit-app-region: drag;
 `;
 
 export const Buttons = styled('div')`
