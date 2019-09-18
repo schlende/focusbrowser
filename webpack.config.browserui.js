@@ -3,21 +3,29 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/browser-ui/index.tsx',
+  entry: './src/browserui/index.tsx',
   mode: 'development',
   target: 'electron-renderer',
   devtool: 'inline-source-map',
   module: {
     rules: [
       {
+        test: /\.(png|gif|jpg|woff2|ttf|svg)$/,
+        include: path.resolve(__dirname, 'src'),
+        use: ['file-loader'],
+      },
+      {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/
-      }
+      },
     ]
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
+    extensions: [ '.tsx', '.ts', '.js' ],
+    alias: {
+      '~': path.resolve(__dirname, 'src')
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({template: './static/index.html'}),

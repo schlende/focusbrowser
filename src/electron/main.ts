@@ -16,8 +16,8 @@ export default class Main {
 
   private static onReady() {
     Main.mainWindow = new BrowserWindow({ 
-      width: 800, 
-      height: 600,
+      width: 1000, 
+      height: 800,
       webPreferences: {
         plugins: true,
         nodeIntegration: true,
@@ -28,7 +28,7 @@ export default class Main {
 
     let view = new BrowserView();
     Main.mainWindow.setBrowserView(view);
-    view.setBounds({ x: 0, y: 50, width: 800, height: 500 });
+    view.setBounds({ x: 0, y: 50, width: 1000, height: 750 });
     view.setAutoResize({
       width: true,
       height: true,

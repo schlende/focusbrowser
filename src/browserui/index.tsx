@@ -1,9 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { Toolbar } from "./views/components/Toolbar";
 
 const { BrowserWindow, BrowserView } = require('electron').remote;
 
 ReactDOM.render(
-    <div>Hello this is a test of the emergency broadcasting system 1234</div>,
+    <div>
+      <Toolbar />
+    </div>,
     document.getElementById("app")
 );

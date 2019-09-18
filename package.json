@@ -4,8 +4,8 @@
   "description": "A browser designed to help people stay focused",
   "main": "index.ts",
   "scripts": {
-    "dev": "ENV='dev' webpack-dev-server --config webpack.config.browser-ui.js",
-    "build": "npx webpack --config webpack.config.electron.js; npx webpack --config webpack.config.browser-ui.js",
+    "dev": "ENV='dev' webpack-dev-server --config webpack.config.browserui.js",
+    "build": "npx webpack --config webpack.config.electron.js; npx webpack --config webpack.config.browserui.js",
     "start": "electron dist/bundle-electron.js",
     "prestart": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,14 +26,19 @@
   },
   "homepage": "https://github.com/schlende/focusbrowser#readme",
   "dependencies": {
+    "@types/styled-components": "^4.1.19",
     "electron": "^6.0.9",
+    "mobx": "^5.13.0",
+    "mobx-react-lite": "^1.4.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "styled-components": "^4.3.2",
     "typescript": "^3.6.3"
   },
   "devDependencies": {
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
+    "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "react-hot-loader": "^4.12.13",
     "source-map-loader": "^0.2.4",
