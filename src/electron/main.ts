@@ -33,10 +33,10 @@ export default class Main {
       width: true,
       height: true,
     } as any);
-    view.webContents.loadURL('https://gmail.com')
+    view.webContents.loadURL('https://google.com')
 
     Main.mainWindow.on('closed', Main.onClose);
-    Main.mainWindow.loadURL(join('file://', Main.application.getAppPath(), `static/index.html`));
+    Main.mainWindow.loadURL('http://localhost:3001');
     Main.mainWindow.webContents.openDevTools({ mode: 'detach' });
   }
 

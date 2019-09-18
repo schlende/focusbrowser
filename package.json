@@ -4,9 +4,9 @@
   "description": "A browser designed to help people stay focused",
   "main": "index.ts",
   "scripts": {
-    "dev": "ENV='dev' webpack-dev-server --config webpack.config.renderer.js",
-    "build": "tsc",
-    "start": "electron dist/electron.js",
+    "dev": "ENV='dev' webpack-dev-server --config webpack.config.browser-ui.js",
+    "build": "npx webpack --config webpack.config.electron.js; npx webpack --config webpack.config.browser-ui.js",
+    "start": "electron dist/bundle-electron.js",
     "prestart": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

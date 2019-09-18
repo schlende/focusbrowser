@@ -3,8 +3,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: './src/browser-ui/index.tsx',
   mode: 'development',
+  target: 'electron-renderer',
   devtool: 'inline-source-map',
   module: {
     rules: [
