@@ -41,7 +41,7 @@ interface TabProps {
 export const StyledTab = styled('div')`
   position: inline;
   height: 100%;
-  width: 200px;
+  width: 150px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   margin-top: 10px;

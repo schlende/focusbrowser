@@ -24,6 +24,7 @@ export const NavigationButtons = observer(() => {
       <ToolbarButton
         size={20}
         icon={loading ? icons.close : icons.refresh}
+        style={{ marginRight: 8 }}
       />
     </StyledContainer>
   );

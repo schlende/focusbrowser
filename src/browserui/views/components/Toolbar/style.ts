@@ -9,9 +9,9 @@ export const StyledToolbar = styled('div')`
   align-items: center;
   color: rgba(0, 0, 0, 0.8);
   width: 100%;
-  height: 38px;
+  height: 34px;
   background-color: #eeeeee;
-  padding-right: ${platform() !== 'darwin' ? 138 : 0}px;
+  padding-right: ${platform() !== 'darwin' ? 300 : 0}px;
   -webkit-app-region: drag;
 `;
 

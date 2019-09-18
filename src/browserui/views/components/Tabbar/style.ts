@@ -17,8 +17,8 @@ export const StyledTabbar = styled('div')`
 
 export const TabsContainer = styled('div')`
   height: 100%;
-  width: calc(100% - 300px);
   position: relative;
+  padding-top: 5px;
   overflow: hidden;
   white-space: nowrap;
   display: flex;
