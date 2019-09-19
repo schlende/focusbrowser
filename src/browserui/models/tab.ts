@@ -39,6 +39,11 @@ export class ITab {
 
   public buildBrowserView(){
 
+    if(this._browserView != null){
+      console.log("Being called multiple times");
+      return;
+    }
+
     const view = new Electron.BrowserView({
       webPreferences: {
         nodeIntegration: false,

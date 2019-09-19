@@ -24,9 +24,7 @@ class BrowserSession{
 
   public addTab(url: string){
     let newTab = new ITab(this.tabs.length, url);
-    newTab.buildBrowserView();
     this.tabs.push(newTab);
-    console.log("Tab added");
     this.selectedTab = newTab;
   }
 
