@@ -30,15 +30,6 @@ export default class Main {
       }
     });
 
-    let view = new BrowserView();
-    Main.mainWindow.setBrowserView(view);
-    view.setBounds({ x: 0, y: 80, width: 1000, height: 720 });
-    view.setAutoResize({
-      width: true,
-      height: true,
-    } as any);
-    view.webContents.loadURL('https://google.com')
-
     Main.mainWindow.on('closed', Main.onClose);
     Main.mainWindow.loadURL('http://localhost:3001');
     Main.mainWindow.webContents.openDevTools({ mode: 'detach' });

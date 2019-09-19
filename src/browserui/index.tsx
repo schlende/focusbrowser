@@ -1,14 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Toolbar } from "./views/components/Toolbar";
-import { SearchBox } from "~/browserui/views/components/SearchBar";
-
-const { BrowserWindow, BrowserView } = require('electron').remote;
+import { BrowserView } from "~/browserui/views/browser-view";
 
 ReactDOM.render(
     <div>
-      <Toolbar />
-      <SearchBox />
+      <BrowserView />
     </div>,
     document.getElementById("app")
 );

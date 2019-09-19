@@ -27,6 +27,7 @@ export const TabsContainer = styled('div')`
 
 export const AddTab = styled(ToolbarButton)`
   position: inline;
+  margin-top: 5px;
   left: 0;
   top: 0;
 `;
