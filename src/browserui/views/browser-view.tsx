@@ -11,13 +11,13 @@ import { ITab } from "~/browserui/models/tab";
 
 export const BrowserView = observer(() => {
 
-  observe(browserSession.tabs, (change: any) => {
-    console.log(change);
-  });
+  // observe(browserSession.tabs, (change: any) => {
+  //   console.log(change);
+  // });
 
-  autorun(() => {
-    console.log(browserSession.tabs.length);
-  });
+  // autorun(() => {
+  //   console.log(browserSession.tabs.length);
+  // });
 
   return (
     <div>

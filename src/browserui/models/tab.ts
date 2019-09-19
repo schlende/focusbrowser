@@ -1,11 +1,12 @@
 import { observable, computed, action } from 'mobx';
-const Electron = require('electron').remote;
+import browserSession from '~/browserui/models/browser-session';
+import { ipcRenderer } from 'electron';
 
 export class ITab {
 
-  constructor(id:number, url:string){
+  constructor(id: number, url: string) {
     this.id = id;
-    this.url = url;
+    this._url = url;
 
     this.buildBrowserView();
   }
@@ -14,66 +15,87 @@ export class ITab {
   public id: number;
 
   @observable
+  public viewId: number;
+
+  @observable
   public title: string = 'New tab';
 
   @observable
   public loading = false;
 
   @observable
-  public url = '';
+  public urlBarValue = '';
 
   @computed
   public get isSelected() {
     return false;
   }
-  
-  public get browserView(){
-    return this._browserView;
+
+  public goBack() {
+    this.browserViewCall('webContents.goBack');
   }
 
-  private _browserView: Electron.BrowserView;
-
-  private get _window(){
-    return Electron.BrowserWindow.getAllWindows()[0];
+  public goForward() {
+    this.browserViewCall('webContents.goForward');
   }
 
-  public buildBrowserView(){
+  public reload() {
+    this.browserViewCall('webContents.reload');
+  }
 
-    if(this._browserView != null){
-      console.log("Being called multiple times");
+  @observable
+  private _url = '';
+
+  public set url(url: string) {
+    if(this.url === url){
       return;
     }
 
-    const view = new Electron.BrowserView({
-      webPreferences: {
-        nodeIntegration: false,
-        contextIsolation: true,
-        plugins: true,
-        nativeWindowOpen: true,
-        webSecurity: true,
-        javascript: true,
-      }
-    });
-    
-    let newBounds = this._window.getBounds();
-    this._window.setBrowserView(view);
-  
-    view.setBounds({ x: 0, y: 80, width: newBounds.width, height: newBounds.height - 80 });
-    view.setAutoResize({
-      width: true,
-      height: true,
-    } as any);
-    view.webContents.loadURL(this.url);
-  
-    this._browserView = view;
+    if (!url.includes('.')) {
+      url = "https://www.google.com/search?q=" + url;
+    } else if (!/^https?:\/\//i.test(url)) {
+      url = 'http://' + url;
+    }
+
+    this.browserViewCall('webContents.loadURL', url);
   }
 
-  public destroyBrowserView(){
-    if(this._browserView != null){
-      if (this._window.getBrowserView() === this._browserView) {
-        this._window.setBrowserView(null);
-      }
-      this._browserView.destroy();
+  public get url() {
+    return this._url;
+  }
+
+  public buildBrowserView() {
+    if (!this.viewId) {
+      this.viewId = ipcRenderer.sendSync('create-browser-view', this._url);
+
+      ipcRenderer.on(`view-url-updated-${this.viewId}`, (event, url: string) => {
+        this._url = url;
+        this.urlBarValue = url;
+      });
+
+      ipcRenderer.on(`view-title-updated-${this.viewId}`, (event, title: string) => {
+        this.title = title;
+      });
+
+      ipcRenderer.on(`navigate-done-${this.viewId}`, (event, url:string) => {
+        this._url = url;
+        this.urlBarValue = url;
+      })
     }
+  }
+
+  public destroyBrowserView() {
+    if (this.viewId) {
+      ipcRenderer.send('destroy-browser-view', this.viewId);
+      this.viewId = null;
+    }
+  }
+
+  private browserViewCall(call: string, ...args: any[]) {
+    ipcRenderer.send(`browserview-call`, {
+      viewId: this.viewId,
+      scope: call,
+      args
+    });
   }
 }

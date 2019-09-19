@@ -1,9 +1,11 @@
 import { BrowserWindow, App, BrowserView } from 'electron';
 import { resolve, join } from 'path';
+import { ViewManager } from '~/electron/view-manager';
 
 export default class Main {
   static mainWindow: BrowserWindow;
   static application: App;
+  static viewManager: ViewManager;
 
   private static onWindowAllClosed() {
     Main.application.quit();
@@ -29,6 +31,8 @@ export default class Main {
         javascript: true,
       }
     });
+
+    this.viewManager = new ViewManager(Main.mainWindow);
 
     Main.mainWindow.on('closed', Main.onClose);
     Main.mainWindow.loadURL('http://localhost:3001');

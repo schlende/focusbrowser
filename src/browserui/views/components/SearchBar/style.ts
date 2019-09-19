@@ -49,6 +49,11 @@ export const SearchIcon = styled('div')`
   `}
 `;
 
+export const Form = styled('form')`
+  width: 100%;
+  flex: 1
+`
+
 export const Input = styled('input')`
   height: 100%;
   flex: 1;

@@ -1,5 +1,6 @@
 import { observable, computed, action } from 'mobx';
 import { ITab } from "~/browserui/models/tab";
+import { ipcRenderer } from 'electron';
 const Electron = require('electron').remote;
 
 class BrowserSession{
@@ -13,12 +14,23 @@ class BrowserSession{
   private _selectedTab: ITab;
 
   @computed
+  public get currentUrlBarValue(){
+    if(this._selectedTab){
+      return this._selectedTab.urlBarValue;
+    }else{
+      return '';
+    }
+  }
+
+  @computed
   public get selectedTab(){
     return this._selectedTab;
   }
 
   public set selectedTab(tab: ITab){
-    this._window.setBrowserView(tab.browserView);
+    if(tab != null && tab.viewId){
+      ipcRenderer.send('set-selected-browser', tab.viewId);
+    }
     this._selectedTab = tab;
   }
 
@@ -39,6 +51,10 @@ class BrowserSession{
 
     if(tab === this.selectedTab && this.tabs.length > 0){
       this.selectedTab = this.tabs[this.tabs.length - 1];
+    }
+
+    if(this.tabs.length == 0){
+      this.selectedTab = null;
     }
   }
 }
