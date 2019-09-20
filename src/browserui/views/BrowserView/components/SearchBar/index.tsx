@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 
 import { StyledSearchBox, InputContainer, SearchIcon, Input, StyledSearchBar, Form } from './style';
-import { NavigationButtons } from '~/browserui/views/components/NavigationButtons';
+import { NavigationButtons } from '~/browserui/views/BrowserView/components/NavigationButtons';
 import browserSession, { BrowserSession } from '~/browserui/models/browser-session';
 
 let currentSession: BrowserSession = null;

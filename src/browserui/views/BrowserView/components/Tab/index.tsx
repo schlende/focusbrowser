@@ -1,10 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 
-import { ITab } from '../../../models/tab';
-
 import { StyledTab, TabContainer, StyledIcon, StyledClose, StyledContent } from './style';
 import { BrowserSession } from '~/browserui/models/browser-session';
+import { ITab } from '~/browserui/models/tab';
 
 let currentSession: BrowserSession = null;
 

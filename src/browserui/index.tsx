@@ -5,6 +5,7 @@ import browserSession, { BrowserSession } from "~/browserui/models/browser-sessi
 import { observer } from "mobx-react-lite";
 import { Project, ProjectState } from "~/browserui/models/project";
 import styled from "styled-components";
+import { SessionStartView } from "~/browserui/views/SessionStartView";
 
 const theProject = new Project("The only project");
 
@@ -19,11 +20,12 @@ const TopBar = styled('div')`
 
 const FocusBrowser = observer(() => {
   let browserSession: BrowserSession = theProject.browserSession;
-  browserSession.visible = true;
+  browserSession.visible = false;
   return (
     <div>
       <TopBar />
-      <BrowserView visible={browserSession.visible} browserSession={browserSession} />
+      <SessionStartView project={theProject} />
+      <BrowserView project={theProject} browserSession={browserSession} />
     </div>
   )
 });

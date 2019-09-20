@@ -1,17 +1,17 @@
 import browserSession, { BrowserSession } from "~/browserui/models/browser-session";
 
-import { SearchBox } from "~/browserui/views/components/SearchBar";
-import { Toolbar } from "~/browserui/views/components/Toolbar";
+import { SearchBox } from "~/browserui/views/BrowserView/components/SearchBar";
+import { Toolbar } from "~/browserui/views/BrowserView/components/Toolbar";
 
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
-import { autorun, observe } from "mobx";
 import { BrowserContainer } from "~/browserui/views/BrowserView/style";
+import { Project, ProjectState } from "~/browserui/models/project";
 
 
-export const BrowserView = observer(({ visible, browserSession }: { visible: boolean, browserSession: BrowserSession }) => {
+export const BrowserView = observer(({ project, browserSession }: { project: Project, browserSession: BrowserSession }) => {
   return (
-    <BrowserContainer visible={visible}>
+    <BrowserContainer visible={project.projectState == ProjectState.Browsing}>
       <Toolbar browserSession={browserSession} />
       <SearchBox browserSession={browserSession} />
     </BrowserContainer>

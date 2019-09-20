@@ -11,6 +11,7 @@ export class Project {
 
   constructor(name: string){
     this.name = name;
+    this.projectState = ProjectState.Planning;
 
     this._browserSession = new BrowserSession();
   }

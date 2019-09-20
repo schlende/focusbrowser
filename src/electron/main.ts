@@ -21,8 +21,8 @@ export default class Main {
       frame: false,
       minWidth: 400,
       minHeight: 450,
-      width: 1000, 
-      height: 800,
+      width: 1200, 
+      height: 700,
       titleBarStyle: 'hiddenInset',
       webPreferences: {
         plugins: true,
