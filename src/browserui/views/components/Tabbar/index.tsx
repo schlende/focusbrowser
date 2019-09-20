@@ -6,22 +6,18 @@ import { icons } from '~/browserui/resources/constants';
 import { AddTab, StyledTabbar, TabsContainer } from './style';
 
 import Tab from '../Tab';
-import { ITab } from '~/browserui/models/tab';
-import browserSession from '~/browserui/models/browser-session';
+import { BrowserSession } from '~/browserui/models/browser-session';
 
-const onAddTabClick = () => {
-  browserSession.addTab("https://google.com");
-};
 
-export const Tabbar = observer(() => {
+export const Tabbar = observer(({ browserSession }: { browserSession: BrowserSession }) => {
   return (
     <StyledTabbar>
       <TabsContainer>
         {browserSession.tabs.map(item => (
-          <Tab key={item.id} tab={item} />
+          <Tab key={item.id} tab={item} browserSession={browserSession} />
         ))}
       </TabsContainer>
-      <AddTab icon={icons.add} onClick={onAddTabClick} />
+      <AddTab icon={icons.add} onClick={() => browserSession.addTab("https://google.com")} />
     </StyledTabbar>
   );
 });

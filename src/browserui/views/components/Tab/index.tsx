@@ -4,18 +4,22 @@ import * as React from 'react';
 import { ITab } from '../../../models/tab';
 
 import { StyledTab, TabContainer, StyledIcon, StyledClose, StyledContent } from './style';
-import browserSession from '~/browserui/models/browser-session';
+import { BrowserSession } from '~/browserui/models/browser-session';
+
+let currentSession: BrowserSession = null;
 
 const removeTab = (tab: ITab) => {
-  browserSession.removeTab(tab);
+  currentSession.removeTab(tab);
 };
 
 const setSelectedTab = (tab: ITab) => {
   console.log("Selected tab set");
-  browserSession.selectedTab = tab;
+  currentSession.selectedTab = tab;
 }
 
-export default observer(({ tab }: { tab: ITab }) => {
+export default observer(({ tab, browserSession }: { tab: ITab, browserSession: BrowserSession }) => {
+  currentSession = browserSession;
+  
   return (
     <StyledTab
       selected={tab.isSelected}

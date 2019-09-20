@@ -1,17 +1,29 @@
 import { observable, computed, action } from 'mobx';
 import { ITab } from "~/browserui/models/tab";
 import { ipcRenderer } from 'electron';
-const Electron = require('electron').remote;
 
-class BrowserSession{
-  public tabs: ITab[] = observable.array([], { deep: false });
+export class BrowserSession{
 
-  private get _window(){
-    return Electron.BrowserWindow.getAllWindows()[0];
+  constructor(){
   }
+
+  public tabs: ITab[] = observable.array([], { deep: false });
 
   @observable
   private _selectedTab: ITab;
+
+  @observable
+  private _visible: boolean = null;
+
+  public set visible(visible: boolean){
+    if(visible != this._visible){
+      this._visible = ipcRenderer.sendSync('set-browser-visibility', visible);
+    }
+  }
+
+  public get visible(){
+    return this._visible;
+  }
 
   @computed
   public get currentUrlBarValue(){

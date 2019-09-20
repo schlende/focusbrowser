@@ -4,29 +4,33 @@ import * as React from 'react';
 import { StyledContainer } from './style';
 import { ToolbarButton } from '../ToolbarButton';
 import { icons } from '~/browserui/resources/constants';
-import browserSession from '~/browserui/models/browser-session';
+import { BrowserSession } from '~/browserui/models/browser-session';
 
+
+let currentBrowserSession:BrowserSession;
 
 const handleBackClick = () => {
   console.log("Back clicked");
-  if(browserSession.selectedTab){
-    browserSession.selectedTab.goBack();
+  if(currentBrowserSession.selectedTab){
+    currentBrowserSession.selectedTab.goBack();
   }
 }
 
 const handleForwardClick = () => {
-  if(browserSession.selectedTab){
-    browserSession.selectedTab.goForward();
+  if(currentBrowserSession.selectedTab){
+    currentBrowserSession.selectedTab.goForward();
   }
 }
 
 const handleReloadClick = () => {
-  if(browserSession.selectedTab){
-    browserSession.selectedTab.reload();
+  if(currentBrowserSession.selectedTab){
+    currentBrowserSession.selectedTab.reload();
   }
 }
 
-export const NavigationButtons = observer(() => {
+export const NavigationButtons = observer(({ browserSession }: { browserSession: BrowserSession }) => {
+
+  currentBrowserSession = browserSession;
 
   let isWindow = false;
   let loading = false;

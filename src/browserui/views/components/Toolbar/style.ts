@@ -11,8 +11,7 @@ export const StyledToolbar = styled('div')`
   width: 100%;
   height: 34px;
   background-color: #eeeeee;
-  padding-right: ${platform() !== 'darwin' ? 300 : 0}px;
-  -webkit-app-region: drag;
+  padding-right: ${platform() !== 'darwin' ? 138 : 0}px;
 `;
 
 export const Buttons = styled('div')`
@@ -33,5 +32,4 @@ export const Handle = styled('div')`
   left: 3px;
   right: 3px;
   bottom: 0px;
-  -webkit-app-region: drag;
 `;

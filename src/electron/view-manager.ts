@@ -5,15 +5,39 @@ export class ViewManager {
   private window: BrowserWindow;
   private views: Map<number, View> = new Map<number, View>();
 
+  private currentView: View;
+  private visible: boolean;
+
   constructor(window: BrowserWindow) {
     this.window = window;
+    this.visible = false;
 
     ipcMain.on('create-browser-view', (event, arg) => {
       const view = new View(window, arg);
 
       this.views.set(view.webContents.id, view);
+      this.currentView = view;
+
+      if(this.visible == true){
+        console.log("Showing new browser window");
+        this.window.setBrowserView(this.currentView);
+      }
 
       event.returnValue = view.webContents.id;
+    })
+
+
+    ipcMain.on('set-browser-visibility', (event, visible) => {
+      console.log("Setting visibility " + visible);
+
+      this.visible = visible;
+      if(visible && this.currentView){
+        this.window.setBrowserView(this.currentView);
+      }else if(visible == false){
+        this.window.setBrowserView(null);
+      }
+
+      event.returnValue = this.visible;
     })
 
     ipcMain.on('destroy-browser-view', (event, arg) => {
@@ -24,6 +48,10 @@ export class ViewManager {
           this.window.setBrowserView(null);
         }
 
+        if(view == this.currentView){
+          this.currentView = null;
+        }
+
         view.destroy();
       }
     })
@@ -31,6 +59,7 @@ export class ViewManager {
     ipcMain.on('set-selected-browser', (event, arg) => {
       let view: View = this.getView(arg);
       if (view) {
+        this.currentView = view;
         this.window.setBrowserView(view);
       }
     })
@@ -61,7 +90,6 @@ export class ViewManager {
         }
       }
     });
-
   }
 
 

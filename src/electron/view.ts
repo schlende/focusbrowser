@@ -30,6 +30,7 @@ export class View extends BrowserView {
     } as any);
     
     this.webContents.loadURL(url);
+    this.window.setBrowserView(null);
 
     this.webContents.addListener('did-finish-load', () => {
       this.window.webContents.send(
