@@ -4,6 +4,8 @@ import * as React from 'react';
 import { StyledSearchBox, InputContainer, SearchIcon, Input, StyledSearchBar, Form } from './style';
 import { NavigationButtons } from '~/browserui/views/BrowserView/components/NavigationButtons';
 import browserSession, { BrowserSession } from '~/browserui/models/browser-session';
+import { TimerView } from '~/browserui/views/BrowserView/components/TimerView';
+import { Project } from '~/browserui/models/project';
 
 let currentSession: BrowserSession = null;
 
@@ -20,7 +22,7 @@ const handleUrlSubmit = (event: any) => {
   currentSession.selectedTab.url = url;
 }
 
-export const SearchBox = observer(({ browserSession }: { browserSession: BrowserSession }) => {
+export const SearchBox = observer(({ browserSession, project }: { browserSession: BrowserSession, project:Project }) => {
   currentSession = browserSession;
   let height = 20;
 
@@ -40,6 +42,7 @@ export const SearchBox = observer(({ browserSession }: { browserSession: Browser
           </Form>
         </InputContainer>
       </StyledSearchBox>
+      <TimerView project={project} />
     </StyledSearchBar>
   );
 });

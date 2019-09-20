@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { SessionStartView } from "~/browserui/views/SessionStartView";
 
 const theProject = new Project("The only project");
+theProject.browserSession.visible = false;
 
 const TopBar = styled('div')`
   position: absolute;
@@ -20,7 +21,6 @@ const TopBar = styled('div')`
 
 const FocusBrowser = observer(() => {
   let browserSession: BrowserSession = theProject.browserSession;
-  browserSession.visible = false;
   return (
     <div>
       <TopBar />

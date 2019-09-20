@@ -29,7 +29,6 @@ export const StyledSearchBox = styled('div')`
   overflow: hidden;
   flex-flow: column;
   flex: 1;
-  margin-right: 100px;
   min-height: 28px;
   transition: 0.2s height;
   position: relative;
