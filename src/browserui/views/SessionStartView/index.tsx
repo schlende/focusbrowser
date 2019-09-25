@@ -15,13 +15,13 @@ export const SessionStartView = observer(({ project }: { project: Project }) => 
 
   return (
     <SessionStartViewContainer visible={project.projectState == ProjectState.Planning}>
-      <div>
+      <form onSubmit={onButtonGoClick}>
         <h1>For the next 15 minutes I will work on...</h1>
         <StyledWorkOnContainer>
           <StyledWorkOnInput value={project.currentTask} onChange={(event) => project.currentTask = event.target.value}/>
         </StyledWorkOnContainer>
-        <GoButton disabled={project.currentTask == ''} onClick={onButtonGoClick}>Start!!</GoButton>
-      </div>
+        <GoButton disabled={project.currentTask == ''} onClick={(event) => { event.preventDefault(); onButtonGoClick() }}>Start!!</GoButton>
+      </form>
     </SessionStartViewContainer>
   );
 });
