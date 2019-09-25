@@ -7,7 +7,7 @@ import { observable } from 'mobx';
 let currentProject: Project;
 
 const onButtonGoClick = () => {
-  currentProject.startSession(15);
+  currentProject.startSession(15 * 60);
 }
 
 export const SessionStartView = observer(({ project }: { project: Project }) => {

@@ -42,11 +42,13 @@ export const NavigationButtons = observer(({ browserSession }: { browserSession:
         icon={icons.back}
         style={{ marginLeft: 8 }}
         onClick={handleBackClick}
+        disabled={!browserSession.navigationState.canGoBack}
       />
       <ToolbarButton
         size={24}
         icon={icons.forward}
         onClick={handleForwardClick}
+        disabled={!browserSession.navigationState.canGoForward}
       />
       <ToolbarButton
         size={20}

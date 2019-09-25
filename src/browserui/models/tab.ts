@@ -1,15 +1,18 @@
 import { observable, computed, action } from 'mobx';
-import browserSession from '~/browserui/models/browser-session';
+import browserSession, { BrowserSession } from '~/browserui/models/browser-session';
 import { ipcRenderer } from 'electron';
 
 export class ITab {
 
-  constructor(id: number, url: string) {
+  constructor(id: number, url: string, session: BrowserSession) {
+    this._session = session;
     this.id = id;
     this._url = url;
 
     this.buildBrowserView();
   }
+
+  private _session: BrowserSession;
 
   @observable
   public id: number;
@@ -24,11 +27,24 @@ export class ITab {
   public loading = false;
 
   @observable
+  public favicon = '';
+
+  @observable
   public urlBarValue = '';
 
   @computed
-  public get isSelected() {
-    return false;
+  public get selected(){
+    return this._session.selectedTab == this;
+  }
+
+  @computed
+  public get collapsable(){
+    return this._session.tabs.length > 1;
+  }
+
+  @computed
+  public get isIconSet() {
+    return this.favicon !== '' || this.loading;
   }
 
   public goBack() {
@@ -47,6 +63,7 @@ export class ITab {
   private _url = '';
 
   public set url(url: string) {
+    console.log("Setting url to " + url);
     if(this.url === url){
       return;
     }
@@ -57,7 +74,7 @@ export class ITab {
       url = 'http://' + url;
     }
 
-    this.browserViewCall('webContents.loadURL', url);
+    ipcRenderer.send('load-new-url', url);
   }
 
   public get url() {
@@ -81,6 +98,16 @@ export class ITab {
         this._url = url;
         this.urlBarValue = url;
       })
+
+      ipcRenderer.on(`view-loading-${this.viewId}`, (event, yesno) => {
+        this.loading = yesno;
+      });
+
+      ipcRenderer.on(`browserview-favicon-updated-${this.id}`,
+        async (e, favicon: string) => {
+          this.favicon = favicon;
+        },
+      );
     }
   }
 

@@ -1,6 +1,8 @@
-import { BrowserWindow, App, BrowserView } from 'electron';
+import { BrowserWindow, App, BrowserView, Menu } from 'electron';
 import { resolve, join } from 'path';
 import { ViewManager } from '~/electron/view-manager';
+import { getMainMenu } from '~/electron/mainmenu';
+import { FindWindow } from '~/electron/window/findwindow';
 
 export default class Main {
   static mainWindow: BrowserWindow;
@@ -33,6 +35,10 @@ export default class Main {
     });
 
     this.viewManager = new ViewManager(Main.mainWindow);
+    Menu.setApplicationMenu(getMainMenu(this.viewManager));
+
+    let find:FindWindow = new FindWindow(Main.mainWindow);
+    find.show();
 
     Main.mainWindow.on('closed', Main.onClose);
     Main.mainWindow.loadURL('http://localhost:3001');

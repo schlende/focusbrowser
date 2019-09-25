@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { icons } from '~/browserui/resources/constants';
+import { centerIcon } from '~/browserui/mixins';
 
 interface CloseProps {
   visible: boolean;
@@ -14,6 +15,7 @@ export const StyledClose = styled('div')`
   background-image: url('${icons.close}');
   transition: 0.1s opacity;
   z-index: 10;
+  ${centerIcon(16)}
   &:hover {
     &:after {
       opacity: 1;
@@ -42,15 +44,11 @@ export const StyledTab = styled('div')`
   position: inline;
   height: 100%;
   width: 150px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  margin-top: 10px;
+  margin-top: 0px;
   left: 0;
   align-items: center;
   will-change: width;
-  background-color: #cccccc;
   margin-right: 3px;
-  padding-left: 10px;
   -webkit-app-region: no-drag;
   ${({ selected, visible }: TabProps) => css`
     z-index: ${selected ? 2 : 1};

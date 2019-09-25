@@ -5,9 +5,32 @@ import { ipcRenderer } from 'electron';
 export class BrowserSession{
 
   constructor(){
+    this.addTab('https://google.com');
+
+    ipcRenderer.on('update-navigation-state', (e, data) => {
+      this.navigationState = data;
+    });
+
+    ipcRenderer.on('api-tabs-create', (e) => {
+      this.addTab('https://google.com');
+    });
+
+    ipcRenderer.on('api-remove-tab', (e, id) => {
+      console.log("Remove tab " + id);
+      let tab:ITab = this.tabs.find(tab => tab.viewId === id);
+      if(tab){
+        this.removeTab(tab);
+      }
+    })
   }
 
   public tabs: ITab[] = observable.array([], { deep: false });
+
+  @observable
+  public navigationState = {
+    canGoBack: false,
+    canGoForward: false,
+  };
 
   @observable
   private _selectedTab: ITab;
@@ -40,14 +63,17 @@ export class BrowserSession{
   }
 
   public set selectedTab(tab: ITab){
+    console.log("Setting selected tab");
+
     if(tab != null && tab.viewId){
       ipcRenderer.send('set-selected-browser', tab.viewId);
     }
+
     this._selectedTab = tab;
   }
 
   public addTab(url: string){
-    let newTab = new ITab(this.tabs.length, url);
+    let newTab = new ITab(this.tabs.length, url, this);
     this.tabs.push(newTab);
     this.selectedTab = newTab;
   }

@@ -2,14 +2,14 @@ import { ipcMain, BrowserWindow, BrowserView } from "electron";
 import { View } from "~/electron/view";
 
 export class ViewManager {
-  private window: BrowserWindow;
+  private _window: BrowserWindow;
   private views: Map<number, View> = new Map<number, View>();
 
   private currentView: View;
   private visible: boolean;
 
   constructor(window: BrowserWindow) {
-    this.window = window;
+    this._window = window;
     this.visible = false;
 
     ipcMain.on('create-browser-view', (event, arg) => {
@@ -92,6 +92,17 @@ export class ViewManager {
     });
   }
 
+  public get window(){
+    return this._window;
+  }
+
+  public get selectedId(){
+    return this.currentView.webContents.id;
+  }
+
+  public get selected(){
+    return this.currentView;
+  }
 
   private getView = (id: number) => {
     return this.views.get(id);

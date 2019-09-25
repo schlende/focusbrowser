@@ -58,6 +58,6 @@ export const GoButton = styled('button')`
     opacity: 0.4;
   }
   :hover:not([disabled]){
-    box-shadow: 0 0 10px yellow;
+    box-shadow: 0 0 10px white;
   }
 `
