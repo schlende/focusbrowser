@@ -37,8 +37,8 @@ export default class Main {
     this.viewManager = new ViewManager(Main.mainWindow);
     Menu.setApplicationMenu(getMainMenu(this.viewManager));
 
-    let find:FindWindow = new FindWindow(Main.mainWindow);
-    find.show();
+    // let find:FindWindow = new FindWindow(Main.mainWindow);
+    // find.show();
 
     Main.mainWindow.on('closed', Main.onClose);
     Main.mainWindow.loadURL('http://localhost:3001');

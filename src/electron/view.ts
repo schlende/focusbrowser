@@ -50,7 +50,7 @@ export class View extends BrowserView {
 
     // this.webContents.openDevTools();
 
-    ipcMain.on('load-new-url', (event, url) => {
+    ipcMain.on(`load-new-url-${this.webContents.id}`, (event, url) => {
       console.log("Will navigate to " + url);
 
       let blacklistterms = View.blacklist.map(term => url.includes(term));

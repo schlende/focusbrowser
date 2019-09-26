@@ -74,7 +74,7 @@ export class ITab {
       url = 'http://' + url;
     }
 
-    ipcRenderer.send('load-new-url', url);
+    ipcRenderer.send(`load-new-url-${this.viewId}`, url);
   }
 
   public get url() {

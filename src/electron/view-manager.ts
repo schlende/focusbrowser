@@ -61,6 +61,7 @@ export class ViewManager {
       if (view) {
         this.currentView = view;
         this.window.setBrowserView(view);
+        view.updateNavigationState();
       }
     })
 
