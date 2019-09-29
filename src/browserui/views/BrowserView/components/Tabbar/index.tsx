@@ -14,7 +14,7 @@ export const Tabbar = observer(({ browserSession }: { browserSession: BrowserSes
     <StyledTabbar>
       <TabsContainer>
         {browserSession.tabs.map(item => (
-          <Tab key={item.id} tab={item} browserSession={browserSession} />
+          <Tab key={item.viewId} tab={item} browserSession={browserSession} />
         ))}
       </TabsContainer>
       <AddTab icon={icons.add} onClick={() => browserSession.addTab("https://google.com")} />

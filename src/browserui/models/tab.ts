@@ -4,9 +4,8 @@ import { ipcRenderer } from 'electron';
 
 export class ITab {
 
-  constructor(id: number, url: string, session: BrowserSession) {
+  constructor(url: string, session: BrowserSession) {
     this._session = session;
-    this.id = id;
     this._url = url;
 
     this.buildBrowserView();

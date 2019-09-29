@@ -18,7 +18,7 @@ export class BrowserSession{
     ipcRenderer.on('api-remove-tab', (e, id) => {
       console.log("Remove tab " + id);
       let tab:ITab = this.tabs.find(tab => tab.viewId === id);
-      if(tab){
+      if(tab && this.tabs.length > 1){
         this.removeTab(tab);
       }
     })
@@ -73,7 +73,7 @@ export class BrowserSession{
   }
 
   public addTab(url: string){
-    let newTab = new ITab(this.tabs.length, url, this);
+    let newTab = new ITab(url, this);
     this.tabs.push(newTab);
     this.selectedTab = newTab;
   }
