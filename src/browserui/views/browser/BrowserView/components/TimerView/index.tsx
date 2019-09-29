@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { observer } from "mobx-react-lite";
 import { Project } from "~/browserui/models/project";
-import { StyledTimerContainer } from "~/browserui/views/BrowserView/components/TimerView/style";
+import { StyledTimerContainer } from "~/browserui/views/browser/BrowserView/components/TimerView/style";
 
 let currentSession: Project;
 

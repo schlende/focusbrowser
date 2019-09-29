@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { BrowserView } from "~/browserui/views/BrowserView";
+import { BrowserView } from "~/browserui/views/browser/BrowserView";
 import browserSession, { BrowserSession } from "~/browserui/models/browser-session";
 import { observer } from "mobx-react-lite";
 import { Project, ProjectState } from "~/browserui/models/project";
 import styled from "styled-components";
-import { SessionStartView } from "~/browserui/views/SessionStartView";
+import { SessionStartView } from "~/browserui/views/browser/SessionStartView";
 
 const theProject = new Project("The only project");
 theProject.browserSession.visible = false;

@@ -8,8 +8,9 @@ export class PopupWindow extends BrowserWindow {
     super({
       frame: false,
       resizable: false,
+      hasShadow: false,
       transparent: true,
-      show: false,
+      show: true,
       fullscreenable: false,
       webPreferences: {
         nodeIntegration: true,
@@ -21,14 +22,7 @@ export class PopupWindow extends BrowserWindow {
 
     this.appWindow = appWindow;
 
-    if (process.env.ENV === 'dev') {
-      if (devtools) {
-        this.webContents.openDevTools({ mode: 'detach' });
-      }
-      this.loadURL(`http://localhost:4444/${name}.html`);
-    } else {
-      this.loadURL(join('file://', app.getAppPath(), `build/${name}.html`));
-    }
+    this.loadURL(`http://localhost:3001/${name}.html`);
 
     ipcMain.on(`get-window-id-${this.id}`, e => {
       e.returnValue = this.appWindow.id;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
-import { SessionStartViewContainer, StyledWorkOnInput, StyledWorkOnContainer, GoButton } from "~/browserui/views/SessionStartView/style";
+import { SessionStartViewContainer, StyledWorkOnInput, StyledWorkOnContainer, GoButton } from "~/browserui/views/browser/SessionStartView/style";
 import { Project, ProjectState } from '~/browserui/models/project';
 import { observable } from 'mobx';
 

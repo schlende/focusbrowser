@@ -2,8 +2,30 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-  entry: './src/browserui/index.tsx',
+
+const getHtml = (scope, name) => {
+  return new HtmlWebpackPlugin({
+    title: 'Wexond',
+    template: 'static/pages/app.html',
+    filename: `${name}.html`,
+    chunks: [`vendor.${scope}`, name],
+  });
+};
+
+const applyEntries = (scope, config, entries) => {
+  for (const entry of entries) {
+    config.entry[entry] = [`./src/renderer/views/${entry}`];
+    config.plugins.push(getHtml(scope, entry));
+
+    if (dev) {
+      config.entry[entry].unshift('react-hot-loader/patch');
+    }
+  }
+};
+
+
+config = {
+  entry: {},
   mode: 'development',
   target: 'electron-renderer',
   devtool: 'inline-source-map',
@@ -28,12 +50,11 @@ module.exports = {
     }
   },
   plugins: [
-    new HtmlWebpackPlugin({template: './static/index.html'}),
     new webpack.HotModuleReplacementPlugin()
   ],
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    filename: `[name].bundle.js`
   },
   externals: {
     "react": "React",
@@ -42,4 +63,19 @@ module.exports = {
   devServer: {
     port: 3001 // Specify a port number to listen for requests
   }
-};
+}
+
+config.entry['app'] = ['./src/browserui/views/browser/index.tsx'];
+config.entry['find'] = ['./src/browserui/views/find/index.tsx'];
+
+config.plugins.push(new HtmlWebpackPlugin({template: './static/index.html',
+  filename: 'app.html',
+  chunks: [`vendor.app`, 'app']
+}));
+
+config.plugins.push(new HtmlWebpackPlugin({template: './static/index.html',
+  filename: 'find.html',
+  chunks: [`vendor.app`, 'find']
+}));
+
+module.exports = config;

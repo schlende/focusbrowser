@@ -1,9 +1,9 @@
-import { PopupWindow } from '~/electron/window/popupwindow';
+import { PopupWindow } from './popup';
 import { BrowserWindow } from 'electron';
 
+const TOOLBAR_HEIGHT = 80;
 const WIDTH = 400;
 const HEIGHT = 64;
-const TOOLBAR_HEIGHT = 80;
 
 export class FindWindow extends PopupWindow {
   public constructor(appWindow: BrowserWindow) {

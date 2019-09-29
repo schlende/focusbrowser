@@ -4,7 +4,7 @@ import * as React from 'react';
 import { StyledTab, TabContainer, StyledIcon, StyledClose, StyledContent, StyledTitle } from './style';
 import { BrowserSession } from '~/browserui/models/browser-session';
 import { ITab } from '~/browserui/models/tab';
-import { Preloader } from '~/browserui/views/BrowserView/components/Preloader';
+import { Preloader } from '~/browserui/views/browser/BrowserView/components/Preloader';
 
 let currentSession: BrowserSession = null;
 
