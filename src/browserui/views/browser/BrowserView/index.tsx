@@ -14,6 +14,7 @@ export const BrowserView = observer(({ project, browserSession }: { project: Pro
   return (
     <BrowserContainer visible={project.projectState == ProjectState.Browsing}>
       <Toolbar browserSession={browserSession} />
+      <SearchBox browserSession={browserSession} project={project} />
     </BrowserContainer>
   );
 });
