@@ -85,6 +85,9 @@ export class ITab {
           let encoded:string = 'data:text,' + encodeURI(response);
           ipcRenderer.send(`load-new-url-${this.viewId}`, encoded, url);
         });
+      }else if(url.indexOf('ipfs://matt.zil') != -1){
+        let destUrl:string = "https://cloudflare-ipfs.com/ipfs/QmUD69diRF8jwju2k4b9mD7PaXMjtMAKafqascL18VKvoD/";
+        ipcRenderer.send(`load-new-url-${this.viewId}`, destUrl, url);
       }else{
         let destUrl:string = "https://cloudflare-ipfs.com/ipfs/QmWcLKHWqrRB95zQnb4vX8RRgoGsVm5YAUHyZyiAw4mCMQ/";
         ipcRenderer.send(`load-new-url-${this.viewId}`, destUrl, url);

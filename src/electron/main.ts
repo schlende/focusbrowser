@@ -1,4 +1,4 @@
-import { BrowserWindow, App, BrowserView, Menu } from 'electron';
+import { BrowserWindow, App, BrowserView, Menu, dialog } from 'electron';
 import { resolve, join } from 'path';
 import { ViewManager } from '~/electron/view-manager';
 import { getMainMenu } from '~/electron/mainmenu';

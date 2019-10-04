@@ -9,6 +9,7 @@ import { BrowserContainer } from "~/browserui/views/browser/BrowserView/style";
 import { Project, ProjectState } from "~/browserui/models/project";
 import { StyledFind, SearchIcon, Input, Occurrences, Buttons, Button } from "~/browserui/views/browser/BrowserView/style";
 import { icons } from "~/browserui/resources/constants";
+const { dialog } = require('electron').remote;
 
 
 export const BrowserView = observer(({ browserSession }: { browserSession: BrowserSession }) => {

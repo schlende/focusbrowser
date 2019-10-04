@@ -1,6 +1,7 @@
 import { Menu, webContents, ipcMain, BrowserView } from 'electron';
 import { ViewManager } from '~/electron/view-manager';
 
+
 export const getMainMenu = (viewManager: ViewManager) => {
   return Menu.buildFromTemplate([
     {
@@ -12,6 +13,12 @@ export const getMainMenu = (viewManager: ViewManager) => {
           click() {
             viewManager.window.webContents.send('api-tabs-create');
           },
+        },
+        {
+          label: 'Upload new version of Matt.zil',
+          click() {
+            viewManager.window.webContents.send('upload-new-version-of-mattdotzil');
+          }
         },
         {
           type: 'separator',
