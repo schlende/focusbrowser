@@ -7,8 +7,7 @@ import { Project, ProjectState } from "~/browserui/models/project";
 import styled from "styled-components";
 import { SessionStartView } from "~/browserui/views/browser/SessionStartView";
 
-const theProject = new Project("The only project");
-theProject.browserSession.visible = false;
+browserSession.visible = true;
 
 const TopBar = styled('div')`
   position: absolute;
@@ -19,20 +18,10 @@ const TopBar = styled('div')`
   -webkit-app-region: drag;
 `
 
-const FocusBrowser = observer(() => {
-  let browserSession: BrowserSession = theProject.browserSession;
-  return (
-    <div>
-      <TopBar />
-      <SessionStartView project={theProject} />
-      <BrowserView project={theProject} browserSession={browserSession} />
-    </div>
-  )
-});
-
 ReactDOM.render(
     <div>
-      <FocusBrowser />
+      <TopBar />
+      <BrowserView browserSession={browserSession} />
     </div>,
     document.getElementById("app")
 );

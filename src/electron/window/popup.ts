@@ -10,7 +10,7 @@ export class PopupWindow extends BrowserWindow {
       resizable: false,
       hasShadow: false,
       transparent: true,
-      show: true,
+      show: false,
       fullscreenable: false,
       webPreferences: {
         nodeIntegration: true,

@@ -22,7 +22,7 @@ const handleUrlSubmit = (event: any) => {
   currentSession.selectedTab.url = url;
 }
 
-export const SearchBox = observer(({ browserSession, project }: { browserSession: BrowserSession, project:Project }) => {
+export const SearchBox = observer(({ browserSession }: { browserSession: BrowserSession }) => {
   currentSession = browserSession;
   let height = 20;
 
@@ -42,7 +42,6 @@ export const SearchBox = observer(({ browserSession, project }: { browserSession
           </Form>
         </InputContainer>
       </StyledSearchBox>
-      <TimerView project={project} />
     </StyledSearchBar>
   );
 });

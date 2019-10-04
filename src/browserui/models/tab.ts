@@ -1,6 +1,7 @@
 import { observable, computed, action } from 'mobx';
 import browserSession, { BrowserSession } from '~/browserui/models/browser-session';
 import { ipcRenderer } from 'electron';
+import ipfsNode from './ipfs-node';
 
 export class ITab {
 
@@ -70,10 +71,27 @@ export class ITab {
     if (!url.includes('.')) {
       url = "https://www.google.com/search?q=" + url;
     } else if (!/^https?:\/\//i.test(url)) {
-      url = 'http://' + url;
+      url = url.replace('ipfs://', '');
+      url = 'http://' + url + "/";
     }
 
-    ipcRenderer.send(`load-new-url-${this.viewId}`, url);
+    let extension = new URL(url).hostname.split('.').pop();
+    if(extension == 'zil'){
+      url = url.replace('http://', 'ipfs://');
+
+      if(url.indexOf('ipfs://raw.zil') != -1){
+        ipfsNode.loadIPFSSite(url, (response:string) => {
+          console.log("Got IPFS response: " + response);
+          let encoded:string = 'data:text,' + encodeURI(response);
+          ipcRenderer.send(`load-new-url-${this.viewId}`, encoded, url);
+        });
+      }else{
+        let destUrl:string = "https://cloudflare-ipfs.com/ipfs/QmWcLKHWqrRB95zQnb4vX8RRgoGsVm5YAUHyZyiAw4mCMQ/";
+        ipcRenderer.send(`load-new-url-${this.viewId}`, destUrl, url);
+      }
+    }else{
+      ipcRenderer.send(`load-new-url-${this.viewId}`, url, undefined);
+    }
   }
 
   public get url() {

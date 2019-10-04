@@ -18,7 +18,7 @@ export default class Main {
     Main.mainWindow = null;
   }
 
-  private static onReady() {
+  private static async onReady() {
     Main.mainWindow = new BrowserWindow({ 
       frame: false,
       minWidth: 400,

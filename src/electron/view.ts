@@ -1,9 +1,17 @@
 import { BrowserView, BrowserWindow, ipcMain } from "electron";
 
+interface IUrlMap {
+  url: string;
+  domain: string;
+  [url: string] : string;
+} 
+
+
 export class View extends BrowserView {
   private window: BrowserWindow;
-  private static blacklist = ["trump", "news.ycombinator.com", "youtube.com"];
+  private static blacklist = ["trump", "news.ycombinator.com", "youtube.com", "facebook.com"];
   public favicon = '';
+  private urlMappings: Map<string, string> = new Map();
 
   constructor(window: BrowserWindow, url: string) {
     super({
@@ -35,9 +43,15 @@ export class View extends BrowserView {
     this.window.setBrowserView(null);
 
     this.webContents.addListener('did-finish-load', () => {
+      let url = this.webContents.getURL();
+      
+      if(this.urlMappings.has(url)){
+        url = this.urlMappings.get(url);
+      }
+
       this.window.webContents.send(
         `view-url-updated-${this.webContents.id}`,
-        this.webContents.getURL()
+        url
       );
     });
 
@@ -50,13 +64,25 @@ export class View extends BrowserView {
 
     // this.webContents.openDevTools();
 
-    ipcMain.on(`load-new-url-${this.webContents.id}`, (event, url) => {
+    ipcMain.on(`load-new-url-${this.webContents.id}`, (event, url, urlValue) => {
       console.log("Will navigate to " + url);
+
+      if(urlValue){
+        this.urlMappings.set(url, urlValue);
+      }
 
       let blacklistterms = View.blacklist.map(term => url.includes(term));
       let inlist = blacklistterms.includes(true);
 
-      if (inlist != true) {
+      if (inlist == true) {
+        return;
+      }
+
+      let extension = new URL(url).hostname.split('.').pop();
+
+      if(extension === 'zil'){
+        console.log('zil domain');
+      }else{
         this.webContents.loadURL(url);
       }
     }); 
@@ -66,12 +92,24 @@ export class View extends BrowserView {
       let blacklistterms = View.blacklist.map(term => url.includes(term));
       let inlist = blacklistterms.includes(true);
 
+      let extension = new URL(url).hostname.split('.').pop();
+
       if (inlist == true) {
         event.preventDefault();
       }
+
+      if ( extension == "zil"){
+        console.log("zil domain");
+        event.preventDefault();
+      }
+
     });
 
     this.webContents.addListener('did-navigate', (event, url) => {
+      if(this.urlMappings.has(url)){
+        url = this.urlMappings.get(url);
+      }
+
       this.window.webContents.send(
         `navigate-done-${this.webContents.id}`,
         url,

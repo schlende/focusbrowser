@@ -1,4 +1,4 @@
-import browserSession, { BrowserSession } from "~/browserui/models/browser-session";
+import { BrowserSession } from "~/browserui/models/browser-session";
 
 import { SearchBox } from "~/browserui/views/browser/BrowserView/components/SearchBar";
 import { Toolbar } from "~/browserui/views/browser/BrowserView/components/Toolbar";
@@ -10,11 +10,12 @@ import { Project, ProjectState } from "~/browserui/models/project";
 import { StyledFind, SearchIcon, Input, Occurrences, Buttons, Button } from "~/browserui/views/browser/BrowserView/style";
 import { icons } from "~/browserui/resources/constants";
 
-export const BrowserView = observer(({ project, browserSession }: { project: Project, browserSession: BrowserSession }) => {
+
+export const BrowserView = observer(({ browserSession }: { browserSession: BrowserSession }) => {
   return (
-    <BrowserContainer visible={project.projectState == ProjectState.Browsing}>
+    <BrowserContainer visible={true}>
       <Toolbar browserSession={browserSession} />
-      <SearchBox browserSession={browserSession} project={project} />
+      <SearchBox browserSession={browserSession} />
     </BrowserContainer>
   );
 });
