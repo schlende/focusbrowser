@@ -1,12 +1,13 @@
 {
-  "appId": "com.wildnotion.focusbrowser",
-  "productName": "Focus Browser",
+  "appId": "com.wildnotion.unstoppablebrowser",
+  "productName": "Unstoppable Browser",
   "nsis": {
     "include": "static/installer.nsh"
   },
   "asar": true,
   "directories": {
-    "output": "dist"
+    "output": "dist",
+    "buildResources": "static/app-icons"
   },
   "files": [
     "build/**/*",
@@ -19,7 +20,7 @@
   "fileAssociations": [
     {
       "name": "Document",
-      "description": "Wexond",
+      "description": "Unstoppable Browser",
       "role": "Viewer",
       "ext": "html"
     }
