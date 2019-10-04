@@ -2,33 +2,13 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
-const getHtml = (scope, name) => {
-  return new HtmlWebpackPlugin({
-    title: 'Wexond',
-    template: 'static/pages/app.html',
-    filename: `${name}.html`,
-    chunks: [`vendor.${scope}`, name],
-  });
-};
-
-const applyEntries = (scope, config, entries) => {
-  for (const entry of entries) {
-    config.entry[entry] = [`./src/renderer/views/${entry}`];
-    config.plugins.push(getHtml(scope, entry));
-
-    if (dev) {
-      config.entry[entry].unshift('react-hot-loader/patch');
-    }
-  }
-};
-
+const dev = process.env.ENV === 'dev';
 
 config = {
   entry: {},
-  mode: 'development',
+  mode: dev ? 'development' : 'production',
+  devtool: dev ? 'eval-source-map' : 'none',
   target: 'electron-renderer',
-  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -53,7 +33,7 @@ config = {
     new webpack.HotModuleReplacementPlugin()
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
     filename: `[name].bundle.js`
   },
   externals: {

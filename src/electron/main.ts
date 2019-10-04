@@ -37,11 +37,16 @@ export default class Main {
     this.viewManager = new ViewManager(Main.mainWindow);
     Menu.setApplicationMenu(getMainMenu(this.viewManager));
 
-    let find:FindWindow = new FindWindow(Main.mainWindow);
+    // let find:FindWindow = new FindWindow(Main.mainWindow);
 
     Main.mainWindow.on('closed', Main.onClose);
-    Main.mainWindow.loadURL('http://localhost:3001/app.html');
-    Main.mainWindow.webContents.openDevTools({ mode: 'detach' });
+
+    if (process.env.ENV === 'dev') {
+      Main.mainWindow.loadURL('http://localhost:3001/app.html');
+      Main.mainWindow.webContents.openDevTools({ mode: 'detach' });
+    }else{
+      Main.mainWindow.loadURL(join('file://', Main.application.getAppPath(), 'build/app.html'));
+    }
   }
 
   static main(app: Electron.App, browserWindow: typeof BrowserWindow) {

@@ -1,10 +1,13 @@
 const webpack = require('webpack');
 const path = require('path');
 
+const dev = process.env.ENV === 'dev';
+
 module.exports = {
   entry: './src/electron/index.ts',
-  mode: 'development',
-  target: 'electron-renderer',
+  mode: dev ? 'development' : 'production',
+  devtool: dev ? 'eval-source-map' : 'none',
+  target: 'electron-main',
   devtool: 'inline-source-map',
   module: {
     rules: [
@@ -28,6 +31,6 @@ module.exports = {
   },
   output: {
     filename: 'bundle-electron.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'build')
   }
 };
