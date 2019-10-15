@@ -2,6 +2,7 @@ import { observable, computed, action } from 'mobx';
 import browserSession, { BrowserSession } from '~/browserui/models/browser-session';
 import { ipcRenderer } from 'electron';
 import ipfsNode from './ipfs-node';
+import { DomainResolver } from '../mixins/domain-resolver';
 
 export class ITab {
 
@@ -68,36 +69,9 @@ export class ITab {
       return;
     }
 
-    if (!url.includes('.')) {
-      url = "https://www.google.com/search?q=" + url;
-    } else if (!/^https?:\/\//i.test(url)) {
-      url = url.replace('ipfs://', '');
-      url = 'http://' + url + "/";
-    }
-
-    let extension = new URL(url).hostname.split('.').pop();
-    if(extension == 'zil'){
-      url = url.replace('http://', 'ipfs://');
-
-      if(url.indexOf('ipfs://raw.zil') != -1){
-        ipfsNode.loadIPFSSite(url, (response:string) => {
-          console.log("Got IPFS response: " + response);
-          let encoded:string = 'data:text,' + encodeURI(response);
-          ipcRenderer.send(`load-new-url-${this.viewId}`, encoded, url);
-        });
-      }else if(url.indexOf('ipfs://brad.zil') != -1){
-        let destUrl:string = "https://cloudflare-ipfs.com/ipfs/QmefehFs5n8yQcGCVJnBMY3Hr6aMRHtsoniAhsM1KsHMSe/";
-        ipcRenderer.send(`load-new-url-${this.viewId}`, destUrl, url);
-      }else if(url.indexOf('ipfs://matt.zil') != -1){
-        let destUrl:string = "https://cloudflare-ipfs.com/ipfs/QmUD69diRF8jwju2k4b9mD7PaXMjtMAKafqascL18VKvoD/";
-        ipcRenderer.send(`load-new-url-${this.viewId}`, destUrl, url);
-      }else{
-        let destUrl:string = "https://cloudflare-ipfs.com/ipfs/QmWcLKHWqrRB95zQnb4vX8RRgoGsVm5YAUHyZyiAw4mCMQ/";
-        ipcRenderer.send(`load-new-url-${this.viewId}`, destUrl, url);
-      }
-    }else{
-      ipcRenderer.send(`load-new-url-${this.viewId}`, url, undefined);
-    }
+    DomainResolver.resolve(url).then((response: any) => {
+      ipcRenderer.send(`load-new-url-${this.viewId}`, response.dest, response.url);
+    });
   }
 
   public get url() {
