@@ -9,7 +9,6 @@ interface IUrlMap {
 
 export class View extends BrowserView {
   private window: BrowserWindow;
-  private static blacklist = ["trump", "news.ycombinator.com", "youtube.com", "facebook.com"];
   public favicon = '';
   private urlMappings: Map<string, string> = new Map();
 
@@ -71,13 +70,6 @@ export class View extends BrowserView {
         this.urlMappings.set(url, urlValue);
       }
 
-      let blacklistterms = View.blacklist.map(term => url.includes(term));
-      let inlist = blacklistterms.includes(true);
-
-      if (inlist == true) {
-        return;
-      }
-
       let extension = new URL(url).hostname.split('.').pop();
 
       if(extension === 'zil'){
@@ -89,14 +81,8 @@ export class View extends BrowserView {
 
     this.webContents.addListener('will-navigate', (event, url) => {
       console.log("Will navigate to " + url);
-      let blacklistterms = View.blacklist.map(term => url.includes(term));
-      let inlist = blacklistterms.includes(true);
 
       let extension = new URL(url).hostname.split('.').pop();
-
-      if (inlist == true) {
-        event.preventDefault();
-      }
 
       if ( extension == "zil"){
         console.log("zil domain");
