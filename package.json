@@ -1,73 +1,54 @@
 {
-  "name": "focusbrower",
-  "version": "0.1.0",
-  "private": true,
-  "homepage": "./",
+  "name": "focusbrowser",
+  "appId": "com.wildnotion.focusbrowser",
+  "version": "1.0.0",
+  "description": "A browser designed to help people stay focused",
+  "main": "build/bundle-electron.js",
+  "scripts": {
+    "dev": "ENV='dev' webpack-dev-server --config webpack.config.browserui.js",
+    "build": "npx webpack --config webpack.config.electron.js; npx webpack --config webpack.config.browserui.js",
+    "compile-darwin": "npm run build && electron-builder -m -p always",
+    "start": "cross-env ENV='dev' electron .",
+    "prestart": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schlende/focusbrowser.git"
+  },
+  "keywords": [
+    "browser",
+    "internet",
+    "addiction"
+  ],
+  "author": "Walt Schlender",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/schlende/focusbrowser/issues"
+  },
+  "homepage": "https://github.com/schlende/focusbrowser#readme",
   "dependencies": {
-    "electron-context-menu": "^0.15.0",
-    "materialize-css": "^1.0.0",
+    "@types/styled-components": "^4.1.19",
+    "mobx": "^5.13.0",
+    "mobx-react-lite": "^1.4.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-electron-web-view": "^2.0.1",
-    "react-materialize": "^3.3.5",
-    "react-redux": "^7.1.1",
-    "react-scripts": "3.1.1",
-    "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
-  },
-  "main": "public/electron.js",
-  "scripts": {
-    "start": "rescripts start",
-    "build": "rescripts build",
-    "test": "rescripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "electron-builder install-app-deps",
-    "preelectron-pack": "yarn build",
-    "electron-pack": "build -mw",
-    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\""
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "styled-components": "^4.3.2",
+    "typescript": "^3.6.3"
   },
   "devDependencies": {
-    "@rescripts/cli": "0.0.11",
-    "@rescripts/rescript-env": "^0.0.10",
-    "concurrently": "^4.1.2",
-    "electron": "^6.0.7",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "cross-env": "^6.0.3",
+    "electron": "^6.0.9",
     "electron-builder": "^21.2.0",
-    "electron-is-dev": "^1.1.0",
-    "wait-on": "^3.3.0"
-  },
-  "author": {
-    "name": "WildNotion",
-    "email": "walt@wildnotion.com",
-    "url": "https://walt.fyi"
-  },
-  "build": {
-    "appId": "com.wildnotion.focusbrowser",
-    "productName": "Focus Browser",
-    "copyright": "Copyright © 2019 ${author}",
-    "mac": {
-      "category": "public.app-category.utilities"
-    },
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ],
-    "directories": {
-      "buildResources": "assets"
-    }
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "react-hot-loader": "^4.12.13",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.1.0",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1"
   }
 }

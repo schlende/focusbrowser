@@ -1,0 +1,27 @@
+{
+  "appId": "com.wildnotion.focusbrowser",
+  "productName": "Focus Browser",
+  "nsis": {
+    "include": "static/installer.nsh"
+  },
+  "asar": true,
+  "directories": {
+    "output": "dist"
+  },
+  "files": [
+    "build/**/*",
+    "package.json",
+    "static/**/*"
+  ],
+  "mac": {
+    "category": "public.app-category.navigation"
+  },
+  "fileAssociations": [
+    {
+      "name": "Document",
+      "description": "Wexond",
+      "role": "Viewer",
+      "ext": "html"
+    }
+  ]
+}
