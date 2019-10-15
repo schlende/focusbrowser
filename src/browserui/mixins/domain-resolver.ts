@@ -58,7 +58,7 @@ export class DomainResolver {
     let resolveFrom = 'https://unstoppabledomains.com/api/record/zil?label=' + domain;
     return new Promise((resolve, reject) => {
       axios.get(resolveFrom).then((response) => {
-        if (response.data.ipfs['html']) {
+        if (response.data['ipfs'] && response.data.ipfs['html']) {
           console.log(response.data.ipfs.html);
           resolve(response.data.ipfs.html);
         } else {
