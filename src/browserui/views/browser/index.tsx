@@ -7,6 +7,7 @@ import { Project, ProjectState } from "~/browserui/models/project";
 import styled from "styled-components";
 import { SessionStartView } from "~/browserui/views/browser/SessionStartView";
 import { ipcRenderer } from 'electron';
+import { SettingsPage } from './SettingsPage';
 
 const { dialog } = require('electron').remote;
 var fs = require('fs');
