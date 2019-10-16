@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 
-import { Button, Icon, Circle } from './style';
+import { Button, Icon } from './style';
 
 interface Props {
   onClick?: (e?: React.SyntheticEvent<HTMLDivElement>) => void;
@@ -53,7 +53,6 @@ export const ToolbarButton = observer(
           opacity={opacity}
           autoInvert={autoInvert}
         />
-        <Circle></Circle>
         {children}
       </Button>
     );

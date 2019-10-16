@@ -4,7 +4,6 @@ import * as React from 'react';
 import { StyledSearchBox, InputContainer, SearchIcon, Input, StyledSearchBar, Form } from './style';
 import { NavigationButtons } from '~/browserui/views/browser/BrowserView/components/NavigationButtons';
 import browserSession, { BrowserSession } from '~/browserui/models/browser-session';
-import { TimerView } from '~/browserui/views/browser/BrowserView/components/TimerView';
 import { Project } from '~/browserui/models/project';
 
 let currentSession: BrowserSession = null;

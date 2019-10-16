@@ -70,7 +70,7 @@ export class ITab {
     }
 
     DomainResolver.resolve(url).then((response: any) => {
-      ipcRenderer.send(`load-new-url-${this.viewId}`, response.dest, response.url);
+      return ipcRenderer.send(`load-new-url-${this.viewId}`, response.dest, response.url);
     });
   }
 
