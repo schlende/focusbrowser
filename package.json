@@ -5,8 +5,8 @@
   "description": "A browser designed to help people stay focused",
   "main": "build/bundle-electron.js",
   "scripts": {
-    "dev": "ENV='dev' webpack-dev-server --config webpack.config.browserui.js",
-    "build": "npx webpack --config webpack.config.electron.js; npx webpack --config webpack.config.browserui.js",
+    "dev": "cross-env ENV='dev' webpack-dev-server --config webpack.config.browserui.js",
+    "build": "npx webpack --config webpack.config.electron.js && npx webpack --config webpack.config.browserui.js",
     "compile-darwin": "npm run build && electron-builder -m -p always",
     "start": "cross-env ENV='dev' electron .",
     "prestart": "npm run build",
@@ -39,6 +39,7 @@
     "cross-env": "^6.0.3",
     "electron": "^6.0.9",
     "electron-builder": "^21.2.0",
+    "electron-updater": "4.1.2",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "ipfs": "^0.38.0",
