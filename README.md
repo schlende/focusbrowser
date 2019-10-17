@@ -14,13 +14,11 @@
 
 # Motivation
 
-[Unstoppable Domains](https://unstoppabledomains.com) is building a new DNS system. Unlike traditional domain names (where address information is stored on centralized servers) Unstoppable .zil domains are stored on the Zilliqua blockchain. The Zilliqua blockchain data is replicated across a decentralized peer to peer network. This means that .zil domain name lookups are impossible to block and nobody can seize a .zil domain name.
+[Unstoppable Domains](https://unstoppabledomains.com) is building a new DNS system. DNS data is stored on the Zilliqa blockchain so Zil domain name lookups are impossible to block and cannot be siezed.
 
-Of course it's still possible to censor data coming off of traditional servers stored in centralized datacenters.
+By combining Zil domains with websites hosted on the peer-to-peer IPFS filesystem you can build and deploy your own uncensorable website. 
 
-Unstoppable solves this problem by letting users map their .zil domains to data stored on the decentralized [IPFS filesystem](https://ipfs.io/). IPFS files are served from the computers of the people who participate in the IPFS network. This means that there is no centralized server that can be censored. 
-
-Want to visit .zil domains? Use the Unstoppable Browser.
+There's still a lot of work to do to make this vision a relaity but you can use the Unstoppable Browser to experience the distributed web today.
 
 # Screenshots
 
