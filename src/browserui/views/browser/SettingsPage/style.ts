@@ -4,7 +4,6 @@ export const SettingsHeader = styled('div')`
   box-sizing: border-box;
   background-color: #0066FF;
   color: white;
-  margin-top: 60px;
   width: 100%;
   height: 40px;
   line-height: 40px;
@@ -32,7 +31,6 @@ export const Box2 = styled('div')`
   padding-left: 30px;
   width: 100%;
   font-size: 15px;
-  font-weight: 900;
   padding-bottom:12px;
   background-color: none;
 `;
@@ -48,6 +46,7 @@ export const LearnMoreButton = styled('div')`
     cursor: pointer;
     float: right;
     font-size: 14px;
+    font-weight: normal;
     padding-left: 12px;
     line-height: 2;
     :hover{
@@ -69,7 +68,7 @@ export const OptionLabel = styled('span')`
 
 export const OptionLabel2 = styled('span')`
   font-size: 15px;
-
+  font-weight: normal;
 `; 
 export const Topic1 = styled('div')`
   margin-left: 26px;

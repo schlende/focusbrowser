@@ -4,9 +4,14 @@ import { observer } from 'mobx-react-lite';
 import { SettingsHeader, Box1, Box2, Header1 ,LearnMoreButton, OptionLabel, OptionLabel2, Topic1, RadioButton } from './style';
 
 
-export const SettingsPage = observer(() => {
+export const SettingsPage = observer(({visible}: {visible: boolean}) => {
+
+  var pageStyle: any = {
+    display: visible ? "block" : "none"
+  }
+
   return (
-    <div>
+    <div style={pageStyle}>
       <SettingsHeader>
         Settings
       </SettingsHeader>

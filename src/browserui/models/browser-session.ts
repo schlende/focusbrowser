@@ -43,6 +43,9 @@ export class BrowserSession{
   public updateAvailable: boolean = false;
 
   @observable
+  public showSettings: boolean = false;
+
+  @observable
   private _selectedTab: ITab;
 
   @observable
