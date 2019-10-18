@@ -16,7 +16,7 @@ export const Box1 = styled('div')`
   margin-left: 10%;
   margin-right: 10%;
   font-size: 15px;
-  font-weight: 900;
+  font-weight: bold;
 `;
 
 export const Header1 = styled('div')`
@@ -62,7 +62,7 @@ export const RadioButton = styled('input')`
 `;
 
 export const OptionLabel = styled('span')`
-  font-weight: bolder;
+  font-weight: bold;
   font-size: 15px;
 `;
 

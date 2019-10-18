@@ -79,7 +79,7 @@ export const SettingsPage = observer(({visible}: {visible: boolean}) => {
               </div>
               <div>
                 <RadioButton type="radio" name="content" value="5" />
-                <OptionLabel> Run your own local node(use more internet bandwidth) </OptionLabel>
+                <OptionLabel> Run your own local node (use more internet bandwidth) </OptionLabel>
               </div>
             </Topic1>
             

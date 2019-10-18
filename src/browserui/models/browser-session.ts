@@ -40,9 +40,12 @@ export class BrowserSession{
   };
 
   @observable
+<<<<<<< HEAD
   public updateAvailable: boolean = false;
 
   @observable
+=======
+>>>>>>> Minor changes to page content and structure
   public showSettings: boolean = false;
 
   @observable
