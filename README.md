@@ -4,10 +4,10 @@
 
 
 <div align="center">
-  <h1>Unstoppable Browser</h1>
+  <h1>Unstoppable Demo Browser</h1>
 
   <p>
-  The Unstoppable Browser is a web browser that can browse the decentralized web. Use it
+  The Unstoppable Demo Browser is a web browser that can browse the decentralized web. Use it
   to visit .zil websites.
   </p>
 </div>
@@ -21,7 +21,7 @@
 
 By combining Zil domains with websites hosted on the peer-to-peer IPFS filesystem you can build and deploy your own uncensorable website. 
 
-There's still a lot of work to do to make this vision a relaity but you can use the Unstoppable Browser to experience the uncensorable web today.
+There's still a lot of work to do to make this vision a relaity but you can use the Unstoppable Demo Browser to experience the uncensorable web today.
 
 # Screenshots
 
@@ -45,7 +45,7 @@ If you are running a local copy of the Zilliqa blockchain or you have a particul
 
 The [IPFS](https://ipfs.io/) stores files by hash on a distributed peer-to-peer network. IPFS files can be referenced by a unique hash --> QmUD69diRF8jwju2k4b9mD7PaXMjtMAKafqascL18VKvoD --> try remembering that.
 
-You can use this unique hash to retrieve files off the IPFS network. These files can be images, web pages, pdfs, anything. The Unstoppable Browser supports loading static html websites off of the IPFS network.
+You can use this unique hash to retrieve files off the IPFS network. These files can be images, web pages, pdfs, anything. The Unstoppable Demo Browser supports loading static html websites off of the IPFS network.
 
 We support 2 main methods of loading IPFS sites. CDN-based loads and direct loads.
 
@@ -57,7 +57,7 @@ Both of these companies provide services that cache content from the IPFS networ
 
 The advantage of this approach is that pages load fast.
 
-By default the Unstoppable Browser retrieves content from CDNs. If you are concerned with censorship or are interested in IPFS web browsing experience you can load load data directly off of IPFS.
+By default the Unstoppable Demo Browser retrieves content from CDNs. If you are concerned with censorship or are interested in IPFS web browsing experience you can load load data directly off of IPFS.
 
 ## Directly off the IPFS filesystem
 
@@ -67,7 +67,7 @@ We can also load data directly off of IPFS. If you use this approach you should 
 
 ## Project overview
 
-The Unstoppable Browser is based on [Electron](https://electronjs.org/). Websites are rendered using Chromium (the same engine that powers Google Chrome) while the browser UI and control logic is implemented in JavaScript.
+The Unstoppable Demo Browser is based on [Electron](https://electronjs.org/). Websites are rendered using Chromium (the same engine that powers Google Chrome) while the browser UI and control logic is implemented in JavaScript.
 
 The project also uses [Typescript](https://www.typescriptlang.org/), [React](https://reactjs.org/), [Styled Components](https://www.styled-components.com/) and [Mobx](https://mobx.js.org/README.html). Project files are compiled with [Webpack](https://webpack.js.org/).
 
@@ -131,7 +131,7 @@ npm run start
 
 ## Building a release
 
-The source for the unstoppable browser is written in Typescript and React. These languages get compiled into vanilla JavaScript by Webpack.
+The source for the Unstoppable Demo Browser is written in Typescript and React. These languages get compiled into vanilla JavaScript by Webpack.
 The output for the compile process are js and html files that are located in the build sub-folder.
 
 ```
