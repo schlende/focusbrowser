@@ -2,33 +2,37 @@
 const IPFS = require('ipfs');
 
 
-class IPFSNode{
+class IPFSNode {
   private ipfsNode: any;
 
-  constructor(){
-    this.setupIpfs();
+  constructor() {
   }
 
-  public async loadIPFSSite(address:string, callback: (response: string) => any){
-    address = 'QmPChd2hVbrJ6bfo3WBcTW4iZnpHm8TEzWkLHmLpXhF68A';
-    // address = 'QmWcLKHWqrRB95zQnb4vX8RRgoGsVm5YAUHyZyiAw4mCMQ';
-    
-    // this.ipfsNode.get(address, (error: any, files: any) => {
-    //   console.log("Got a response");
-    //   debugger;
-    // });
+  public async loadIPFSSite(address: string) {
+    return new Promise(async (resolve, reject) => {
+      if (!this.ipfsNode) {
+        try {
+          this.ipfsNode = await IPFS.create();
+          const id = await this.ipfsNode.id();
+          console.log("Node ready " + id);
+        } catch (err) {
+          console.error(err)
+          reject(err);
+        }
+      }
 
-    const resp: string = await this.ipfsNode.cat(address);
-    callback(resp)
-  }
+      console.log("Doing lookup");
+      address = 'QmPChd2hVbrJ6bfo3WBcTW4iZnpHm8TEzWkLHmLpXhF68A';
+      // address = 'QmWcLKHWqrRB95zQnb4vX8RRgoGsVm5YAUHyZyiAw4mCMQ';
 
-  private async setupIpfs(){
-    try {
-      this.ipfsNode = await IPFS.create();
-      const id = await this.ipfsNode.id();
-    } catch (err) {
-      console.error(err)
-    }
+      // this.ipfsNode.get(address, (error: any, files: any) => {
+      //   console.log("Got a response");
+      //   debugger;
+      // });
+
+      const resp: string = await this.ipfsNode.cat(address);
+      resolve(resp);
+    })
   }
 }
 
