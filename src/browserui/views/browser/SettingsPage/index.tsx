@@ -4,6 +4,10 @@ import { observer } from 'mobx-react-lite';
 import { SettingsHeader, Box1, Box2, Header1 ,LearnMoreButton, OptionLabel, OptionLabel2, Topic1, RadioButton } from './style';
 
 
+export const handleOnClick = () => {
+  alert("That button got clicked");
+}
+
 export const SettingsPage = observer(({visible}: {visible: boolean}) => {
 
   var pageStyle: any = {
@@ -18,7 +22,7 @@ export const SettingsPage = observer(({visible}: {visible: boolean}) => {
       <Box1>
         Domain
         <Box2>
-          <LearnMoreButton>
+          <LearnMoreButton onClick={handleOnClick}>
               Learn More
           </LearnMoreButton>
           <Header1>  

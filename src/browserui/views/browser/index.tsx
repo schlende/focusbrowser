@@ -12,7 +12,7 @@ import { SettingsPage } from './SettingsPage';
 const { dialog } = require('electron').remote;
 var fs = require('fs');
 
-browserSession.visible = true;
+browserSession.visible = false;
 
 const TopBar = styled('div') `
   position: absolute;
