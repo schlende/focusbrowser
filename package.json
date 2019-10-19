@@ -1,13 +1,14 @@
 {
   "name": "focusbrowser",
   "appId": "com.wildnotion.focusbrowser",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A browser designed to help people stay focused",
   "main": "build/bundle-electron.js",
   "scripts": {
     "dev": "cross-env ENV='dev' webpack-dev-server --config webpack.config.browserui.js",
     "build": "npx webpack --config webpack.config.electron.js && npx webpack --config webpack.config.browserui.js",
     "compile-darwin": "npm run build && electron-builder -m -p always",
+    "compile-win": "npm run build && electron-builder -w -p always",
     "start": "cross-env ENV='dev' electron .",
     "prestart": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
