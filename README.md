@@ -8,20 +8,20 @@
 
   <p>
   The Unstoppable Demo Browser is a web browser that can browse the decentralized web. Use it
-  to visit .zil websites.
+  to visit blockchain TLD websites.
   </p>
 </div>
 
 # Motivation
 
-[Unstoppable Domains](https://unstoppabledomains.com) is building a new DNS system. Unlike traditional DNS systems (which store domain data on centrally managed servers) Unstoppable DNS data is stored on the Zilliqa blockchain. This architecture has two big benefits. 
+[Unstoppable Domains](https://unstoppabledomains.com) is building a new DNS system. Unlike traditional DNS systems (which store domain data on centrally managed servers) Unstoppable DNS data is stored on the blockchain. This architecture has two big benefits. 
 
-* **Zil domain lookups are impossible to block**
+* **Domain lookups are impossible to block**
 * **Domain names are impossible to sieze**
 
-By combining Zil domains with websites hosted on the peer-to-peer IPFS filesystem you can build and deploy your own uncensorable website. 
+By combining blockchain domains with websites and content hosted on peer-to-peer filesystems you can build and deploy your own uncensorable website, content, and service. 
 
-There's still a lot of work to do to make this vision a relaity but you can use the Unstoppable Demo Browser to experience the uncensorable web today.
+Use the Unstoppable Demo Browser to experience and explore the uncensorable web today.
 
 # Screenshots
 
@@ -31,15 +31,16 @@ There's still a lot of work to do to make this vision a relaity but you can use 
 
 ## API
 
-Unstoppable provides an API for doing zil domain name lookups. By default the Unstoppable Demo Browser queries this API to figure out what an address maps to. We do this because a direct blockchain lookup is a bit slow. This method puts trust in the validity of the Unstoppable API. If you want a more trustless approach you can resolve domain names using other methods.
+Unstoppable provides an API for blockchain domain name lookups. By default the Unstoppable Demo Browser queries an API to figure out what an address maps to because direct blockchain lookup is a bit slow. This makes browsing easier.  For a more trustless approach you can resolve domain names using direct blockchain lookups by configuring the settings in the browser.
 
-## Via the Zilliqa blockchain API
+## Using 3rd party blockchain APIs
 
-The Zilliqua blockchain API provides access to the Zilliqa blockchain without you needing to host (and maintain) a copy of the blockchain yourself. This method puts trust in the validity of the Zilliqa API. If you want a more trustless approach you can resolve domain names using other methods.
+You can also use a 3rd party API like Infura or other well known trusted API's to resolve blockchain domains.  This method puts trust in the validity of the API of your choosing. If you want a more trustless approach you can resolve domain names directly from the blockchain itself.
 
 ## Directly off the blockchain
 
-If you are running a local copy of the Zilliqa blockchain or you have a particular node you trust this method will read domain data directly off of the blockchain. This method is fairly trustless.
+If you are running a local copy of the blockchain(s) you wish to resolve, or you have a particular node you trust this method will read domain data directly from your own node. This method is fairly trustless.
+
 
 # How we load IPFS websites
 
