@@ -6,8 +6,7 @@ import { NavigationButtons } from '~/browserui/views/browser/BrowserView/compone
 import browserSession, { BrowserSession } from '~/browserui/models/browser-session';
 import { ToolbarButton } from '../ToolbarButton';
 import { icons } from '~/browserui/resources/constants';
-import { TimerView } from '~/browserui/views/browser/BrowserView/components/TimerView';
-import { Project } from '~/browserui/models/project';
+import { ipcRenderer } from 'electron';
 
 let currentSession: BrowserSession = null;
 
@@ -24,18 +23,35 @@ const handleUrlSubmit = (event: any) => {
   currentSession.selectedTab.url = url;
 }
 
+const AutoUpdateButton = () => {
+  if (currentSession.updateAvailable) {
+    return (
+      <ToolbarButton
+        size={20}
+        icon={icons.fire}
+        onClick={handleUpdateClick}
+      />
+    )
+  } else {
+    return (
+      <span></span>
+    )
+  }
+}
+
 const handleUpdateClick = () => {
-  // browserSession.autoUpdater.handleUpdate();
+  ipcRenderer.send('update-reaquested');
 }
 
 export const SearchBox = observer(({ browserSession }: { browserSession: BrowserSession }) => {
   currentSession = browserSession;
   let height = 20;
-  let hasNewUpdate = true;
 
   return (
     <StyledSearchBar>
+
       <NavigationButtons browserSession={browserSession} />
+
       <StyledSearchBox style={{ height }} >
         <InputContainer>
           <SearchIcon />
@@ -49,14 +65,7 @@ export const SearchBox = observer(({ browserSession }: { browserSession: Browser
           </Form>
         </InputContainer>
       </StyledSearchBox>
-
-      <ToolbarButton
-        size={20}
-        icon={icons.fire}
-        style={{ display: hasNewUpdate ? 'visible' : 'none' }}
-        onClick={handleUpdateClick}
-      />
-
+      <AutoUpdateButton />
     </StyledSearchBar>
   );
 });

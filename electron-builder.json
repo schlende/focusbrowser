@@ -16,6 +16,10 @@
     "package.json",
     "static/**/*"
   ],
+  "publish": {
+    "provider": "github",
+    "publishAutoUpdate": true
+  },
   "mac": {
     "category": "public.app-category.navigation"
   },
