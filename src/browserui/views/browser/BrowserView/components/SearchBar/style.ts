@@ -83,3 +83,16 @@ export const InputContainer = styled.div`
   min-height: 28px;
   height: 28px;
 `;
+
+export const UpdateIndicatorIcon = styled('div')`
+  ${centerIcon()};
+  background-image: url(${icons.fire});
+  height: 16px;
+  min-width: 16px;
+  margin-left: 10px;
+  ${({ theme }: { theme?: ITheme }) => css`
+    filter: ${theme['overlay.foreground'] === 'light'
+      ? 'invert(100%)'
+      : 'none'};
+  `}
+`;
