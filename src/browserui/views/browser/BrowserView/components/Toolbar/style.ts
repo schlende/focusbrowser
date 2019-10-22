@@ -3,6 +3,7 @@ import { platform } from 'os';
 
 export const StyledToolbar = styled('div')`
   position: relative;
+  box-sizing: border-box;
   z-index: 100;
   display: flex;
   flex-flow: row;
@@ -11,7 +12,6 @@ export const StyledToolbar = styled('div')`
   width: 100%;
   height: 34px;
   background-color: #eeeeee;
-  padding-right: ${platform() !== 'darwin' ? 138 : 0}px;
 `;
 
 export const Buttons = styled('div')`

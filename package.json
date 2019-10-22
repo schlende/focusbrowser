@@ -1,7 +1,7 @@
 {
   "name": "focusbrowser",
   "appId": "com.wildnotion.focusbrowser",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A browser designed to help people stay focused",
   "main": "build/bundle-electron.js",
   "scripts": {
