@@ -4,7 +4,7 @@ import { ipcRenderer } from 'electron';
 
 export class BrowserSession{
 
-  constructor(){
+  constructor() {
     this.addTab('https://google.com');
 
     ipcRenderer.on('update-navigation-state', (e, data) => {
@@ -17,11 +17,16 @@ export class BrowserSession{
 
     ipcRenderer.on('api-remove-tab', (e, id) => {
       console.log("Remove tab " + id);
-      let tab:ITab = this.tabs.find(tab => tab.viewId === id);
-      if(tab && this.tabs.length > 1){
+      let tab: ITab = this.tabs.find(tab => tab.viewId === id);
+      if (tab && this.tabs.length > 1) {
         this.removeTab(tab);
       }
     })
+
+    ipcRenderer.on('update-available', (e) => {
+      console.log("ipcRenderer got [Update available]");
+      this.updateAvailable = true;
+    });
   }
 
   public tabs: ITab[] = observable.array([], { deep: false });
@@ -31,6 +36,9 @@ export class BrowserSession{
     canGoBack: false,
     canGoForward: false,
   };
+
+  @observable
+  public updateAvailable: boolean = false;
 
   @observable
   private _selectedTab: ITab;

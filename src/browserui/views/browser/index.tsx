@@ -23,7 +23,6 @@ const TopBar = styled('div') `
   -webkit-app-region: drag;
 `
 
-
 function readFilesInDir(dir: string) {
   fs.readdir(dir, 'utf-8', (err: any, files: any) => {
     let promises: any = [];
@@ -55,12 +54,12 @@ ipcRenderer.on('upload-new-version-of-mattdotzil', () => {
 });
 
 
-  ReactDOM.render(
-    <div>
-      <TopBar />
-      <BrowserView browserSession={browserSession} />
-    </div>,
-    document.getElementById("app")
-  );
+ReactDOM.render(
+  <div>
+    <TopBar />
+    <BrowserView browserSession={browserSession} />
+  </div>,
+  document.getElementById("app")
+);
 
 
