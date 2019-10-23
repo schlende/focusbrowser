@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 
-import { StyledSearchBox, InputContainer, SearchIcon, Input, StyledSearchBar, Form, UpdateButtonToolTip, UpdateButtonToolTipText } from './style';
+import { StyledSearchBox, InputContainer, SearchIcon, Input, StyledSearchBar, Form } from './style';
 import { NavigationButtons } from '~/browserui/views/browser/BrowserView/components/NavigationButtons';
 import browserSession, { BrowserSession } from '~/browserui/models/browser-session';
 import { ToolbarButton } from '../ToolbarButton';

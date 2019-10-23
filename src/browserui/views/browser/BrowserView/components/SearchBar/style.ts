@@ -83,24 +83,3 @@ export const InputContainer = styled.div`
   min-height: 28px;
   height: 28px;
 `;
-
-export const UpdateButtonToolTip = styled('div')`
-  position: relative;
-`;
-
-export const UpdateButtonToolTipText = styled('span')`
-  width: 120px;
-  right: 105%;
-  background - color: #555;
-  color: #fff;
-  text - align: center;
-  border - radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z - index: 1;
-  bottom: 125 %;
-  left: 50 %;
-  margin - left: -60px;
-  opacity: 0;
-  transition: opacity 0.3s;
-`;
