@@ -20,7 +20,7 @@ export const BrowserView = observer(({ browserSession }: { browserSession: Brows
     <BrowserContainer visible={true}>
       <Toolbar browserSession={browserSession} />
       <SearchBox browserSession={browserSession} />
-      <SettingsPage visible={browserSession.showSettings} />
+      <SettingsPage visible={browserSession.selectedTab.settingsPage} />
     </BrowserContainer>
   );
 });

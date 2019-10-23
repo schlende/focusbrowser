@@ -41,6 +41,7 @@ export class BrowserSession{
 
   @observable
 <<<<<<< HEAD
+<<<<<<< HEAD
   public updateAvailable: boolean = false;
 
   @observable
@@ -49,6 +50,8 @@ export class BrowserSession{
   public showSettings: boolean = false;
 
   @observable
+=======
+>>>>>>> settings page is now tied to tabs... so you can switch between tabs and get the right settings
   private _selectedTab: ITab;
 
   @observable
@@ -81,11 +84,8 @@ export class BrowserSession{
   public set selectedTab(tab: ITab){
     console.log("Setting selected tab");
 
-    if(tab != null && tab.viewId){
-      ipcRenderer.send('set-selected-browser', tab.viewId);
-    }
-
     this._selectedTab = tab;
+    this._selectedTab.activate();
   }
 
   public addTab(url: string){

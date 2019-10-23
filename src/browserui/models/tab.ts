@@ -39,6 +39,11 @@ export class ITab {
   }
 
   @computed
+  public get settingsPage(){
+    return this._settingsVisible;
+  }
+
+  @computed
   public get collapsable(){
     return this._session.tabs.length > 1;
   }
@@ -69,13 +74,31 @@ export class ITab {
       return;
     }
 
-    DomainResolver.resolve(url).then((response: any) => {
-      ipcRenderer.send(`load-new-url-${this.viewId}`, response.dest, response.url);
-    });
+    if(url == "settings"){
+      this.settingsPage = true;
+    }else{
+      DomainResolver.resolve(url).then((response: any) => {
+        ipcRenderer.send(`load-new-url-${this.viewId}`, response.dest, response.url);
+      });
+    }
   }
 
   public get url() {
     return this._url;
+  }
+
+  public activate(){
+    ipcRenderer.send('set-selected-browser', this.viewId);
+    if(this.settingsPage){
+      ipcRenderer.send('set-browser-visibility', false);
+    }else{
+      ipcRenderer.send('set-browser-visibility', true);
+    }
+  }
+
+  public set settingsPage(yesno: boolean) {
+    this._settingsVisible = yesno;
+    ipcRenderer.send('set-browser-visibility', !yesno);
   }
 
   public buildBrowserView() {
@@ -94,6 +117,10 @@ export class ITab {
       ipcRenderer.on(`navigate-done-${this.viewId}`, (event, url:string) => {
         this._url = url;
         this.urlBarValue = url;
+
+        if(this.settingsPage){
+          this.settingsPage = false;
+        }
       })
 
       ipcRenderer.on(`view-loading-${this.viewId}`, (event, yesno) => {
@@ -122,4 +149,7 @@ export class ITab {
       args
     });
   }
+
+  @observable
+  private _settingsVisible:boolean;
 }
