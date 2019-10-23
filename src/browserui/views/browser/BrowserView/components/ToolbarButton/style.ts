@@ -43,19 +43,6 @@ export const Icon = styled('div')`
   `};
 `;
 
-export const Button = styled('div')`
-  height: ${TOOLBAR_HEIGHT}px;
-  position: relative;
-  transition: 0.2s background-color;
-  width: ${TOOLBAR_BUTTON_WIDTH}px;
-  backface-visibility: hidden;
-  ${({ disabled }: { disabled: boolean }) => css`
-    pointer-events: ${disabled ? 'none' : 'inherit'};
-    -webkit-app-region: ${disabled ? 'drag' : 'no-drag'};
-  `};
-`;
-
-
 export const Tooltip = styled('div')`
   display: inline;
   position: absolute;
@@ -70,6 +57,7 @@ export const Tooltip = styled('div')`
   color: rgba(255, 255, 255, 1);
   font-size: 13px;
   pointer-events: none;
+  visibility: hidden;
   ${({ visible }: { visible: boolean }) => css`
     display: ${visible ? 'visible' : 'none'};
   `};
@@ -83,8 +71,23 @@ export const Tooltip = styled('div')`
     border-width: 5px;
     border-style: solid;
     border-color: transparent transparent transparent rgba(0, 0, 0, 0.65);
-  }
+  };
 `
+
+export const Button = styled('div')`
+  height: ${TOOLBAR_HEIGHT}px;
+  position: relative;
+  transition: 0.2s background-color;
+  width: ${TOOLBAR_BUTTON_WIDTH}px;
+  backface-visibility: hidden;
+  ${({ disabled }: { disabled: boolean }) => css`
+    pointer-events: ${disabled ? 'none' : 'inherit'};
+    -webkit-app-region: ${disabled ? 'drag' : 'no-drag'};
+  `};
+  &:hover ${Tooltip} {
+    visibility: visible;
+  };
+`;
 
 export const Circle = styled('div')`
   border-radius: 50%;
