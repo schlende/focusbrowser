@@ -1,11 +1,12 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 
-import { StyledSearchBox, InputContainer, SearchIcon, Input, StyledSearchBar, Form } from './style';
+import { StyledSearchBox, InputContainer, SearchIcon, Input, StyledSearchBar, Form, UpdateIndicatorIcon } from './style';
 import { NavigationButtons } from '~/browserui/views/browser/BrowserView/components/NavigationButtons';
 import browserSession, { BrowserSession } from '~/browserui/models/browser-session';
-import { TimerView } from '~/browserui/views/browser/BrowserView/components/TimerView';
-import { Project } from '~/browserui/models/project';
+import { ToolbarButton } from '../ToolbarButton';
+import { icons } from '~/browserui/resources/constants';
+import { ipcRenderer } from 'electron';
 
 let currentSession: BrowserSession = null;
 
@@ -22,13 +23,37 @@ const handleUrlSubmit = (event: any) => {
   currentSession.selectedTab.url = url;
 }
 
+const AutoUpdateButton = () => {
+  if (currentSession.updateAvailable) {
+    return (
+      <ToolbarButton
+        size={20}
+        icon={icons.download}
+        onClick={handleUpdateClick}
+      />
+    )
+  } else {
+    return (
+      <span></span>
+    )
+  }
+}
+
+const handleUpdateClick = () => {
+  ipcRenderer.send('update-reaquested');
+}
+
 export const SearchBox = observer(({ browserSession }: { browserSession: BrowserSession }) => {
   currentSession = browserSession;
   let height = 20;
 
+  console.log("Reloading SearchBox...." + browserSession.updateAvailable);
+
   return (
     <StyledSearchBar>
+
       <NavigationButtons browserSession={browserSession} />
+
       <StyledSearchBox style={{ height }} >
         <InputContainer>
           <SearchIcon />
@@ -42,6 +67,7 @@ export const SearchBox = observer(({ browserSession }: { browserSession: Browser
           </Form>
         </InputContainer>
       </StyledSearchBox>
+      <AutoUpdateButton />
     </StyledSearchBar>
   );
 });

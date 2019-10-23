@@ -5,6 +5,7 @@ import { centerIcon } from '~/browserui/mixins';
 
 export const BrowserContainer = styled('div')`
   position: absolute;
+  box-sizing: border-box;
   top: 0;
   left: 0;
   right: 0;

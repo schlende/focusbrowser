@@ -57,15 +57,15 @@ export const Button = styled('div')`
 
 export const Circle = styled('div')`
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   overflow: hidden;
   transition: 0.2s background-color;
-  &:hover {
-    background-color: 'rgba(0, 0, 0, 0.06)'};
+  :hover {
+    background-color: rgba(125, 125, 125, 0.4);
   }
 `;

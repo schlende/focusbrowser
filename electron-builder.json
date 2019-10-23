@@ -1,8 +1,10 @@
 {
   "appId": "com.wildnotion.unstoppablebrowser",
   "productName": "Unstoppable Browser",
+  "copyright": "Copyright © year ${author}",
   "nsis": {
-    "include": "static/installer.nsh"
+    "include": "static/installer.nsh",
+    "oneClick": "false"
   },
   "asar": true,
   "directories": {
@@ -14,8 +16,30 @@
     "package.json",
     "static/**/*"
   ],
+  "publish": {
+    "provider": "github",
+    "publishAutoUpdate": true
+  },
   "mac": {
     "category": "public.app-category.navigation"
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64",
+          "ia32"
+        ]
+      },
+      {
+        "target": "zip",
+        "arch": [
+          "x64",
+          "ia32"
+        ]
+      }
+    ]
   },
   "fileAssociations": [
     {

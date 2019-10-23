@@ -3,6 +3,7 @@ import { resolve, join } from 'path';
 import { ViewManager } from '~/electron/view-manager';
 import { getMainMenu } from '~/electron/mainmenu';
 import { FindWindow } from '~/electron/window/find';
+import { AppUpdater } from '~/electron/app-updater';
 
 export default class Main {
   static mainWindow: BrowserWindow;
@@ -19,11 +20,11 @@ export default class Main {
   }
 
   private static async onReady() {
-    Main.mainWindow = new BrowserWindow({ 
+    Main.mainWindow = new BrowserWindow({
       frame: false,
       minWidth: 400,
       minHeight: 450,
-      width: 1200, 
+      width: 1200,
       height: 700,
       titleBarStyle: 'hiddenInset',
       webPreferences: {
@@ -44,9 +45,15 @@ export default class Main {
     if (process.env.ENV === 'dev') {
       Main.mainWindow.loadURL('http://localhost:3001/app.html');
       Main.mainWindow.webContents.openDevTools({ mode: 'detach' });
-    }else{
+    } else {
       Main.mainWindow.loadURL(join('file://', Main.application.getAppPath(), 'build/app.html'));
     }
+
+    Main.mainWindow.webContents.on('dom-ready', () => {
+      let updater: AppUpdater = new AppUpdater(Main.mainWindow);
+      console.log("dom-ready -> checkForUpdates() called");
+      updater.checkForUpdates(true);
+    });
   }
 
   static main(app: Electron.App, browserWindow: typeof BrowserWindow) {
