@@ -14,12 +14,6 @@ export const getMainMenu = (viewManager: ViewManager) => {
             viewManager.window.webContents.send('api-tabs-create');
           },
         },
-        // {
-        //   label: 'Upload new version of Matt.zil',
-        //   click() {
-        //     viewManager.window.webContents.send('upload-new-version-of-mattdotzil');
-        //   }
-        // },
         {
           type: 'separator',
         },
