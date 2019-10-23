@@ -150,7 +150,47 @@ To build a release -->
 # For mac
 npm run compile-darwin
 
+# For win
+npm run compile-win
+
+# Mac OS can compile both windows and mac builds... but windows can only comiple windows builds :p
+
 # You will find the output of this operation in the dist folder
+```
+
+To publish a release to github --> [instructions for electron builder](https://www.electron.build/configuration/publish)
+[To setup a github token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
+
+Create a new github token with write:packages and read:packages permissions
+
+Add the github auth token to your environment variables
+```
+# Mac
+vim ~/.bash_profile
+
+# Add aline for GH_TOKEN
+
+# Win
+# Use the environment variable config screen... tutorial
+# https://superuser.com/questions/949560/how-do-i-set-system-environment-variables-in-windows-1
+```
+
+Update the version number in package.json
+
+Run the compile command
+
+A release should get generated on your local machine in the dist folder and should get uploaded to github
+
+You should be able to see the release on github under the releases tab
+```
+
+To test the auto-update feature locally you will need to create a local dev-app-update.yml file in the root directory with the following contents.
+
+```
+provider: github
+publishAutoUpdate: true
+repo: 
+owner: 
 ```
 
 # Contributing
