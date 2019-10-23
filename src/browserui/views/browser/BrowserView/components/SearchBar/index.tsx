@@ -28,7 +28,7 @@ const AutoUpdateButton = () => {
     return (
       <ToolbarButton
         size={20}
-        icon={icons.fire}
+        icon={icons.download}
         onClick={handleUpdateClick}
       />
     )
@@ -46,6 +46,8 @@ const handleUpdateClick = () => {
 export const SearchBox = observer(({ browserSession }: { browserSession: BrowserSession }) => {
   currentSession = browserSession;
   let height = 20;
+
+  console.log("Reloading SearchBox...." + browserSession.updateAvailable);
 
   return (
     <StyledSearchBar>

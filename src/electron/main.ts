@@ -51,6 +51,7 @@ export default class Main {
 
     Main.mainWindow.webContents.on('dom-ready', () => {
       let updater: AppUpdater = new AppUpdater(Main.mainWindow);
+      console.log("dom-ready -> checkForUpdates() called");
       updater.checkForUpdates(true);
     });
   }

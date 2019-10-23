@@ -23,6 +23,8 @@ export class BrowserSession{
       }
     })
 
+    console.log("BrowserSession start listening to update-available.");
+
     ipcRenderer.on('update-available', (e) => {
       console.log("ipcRenderer got [Update available]");
       this.updateAvailable = true;
