@@ -31,10 +31,6 @@ export const getMainMenu = (viewManager: ViewManager) => {
           },
         },
         {
-          role: 'quit',
-          accelerator: 'CmdOrCtrl+Shift+Q',
-        },
-        {
           label: 'Reload',
           visible: false,
           accelerator: 'CmdOrCtrl+R',
@@ -42,14 +38,14 @@ export const getMainMenu = (viewManager: ViewManager) => {
             viewManager.selected.webContents.reload();
           },
         },
-        {
-          accelerator: 'CmdOrCtrl+F',
-          label: 'Find in page',
-          visible: true,
-          click() {
-            viewManager.window.webContents.send('find');
-          },
-        },
+        // {
+        //   accelerator: 'CmdOrCtrl+F',
+        //   label: 'Find in page',
+        //   visible: true,
+        //   click() {
+        //     viewManager.window.webContents.send('find');
+        //   },
+        // },
         {
           accelerator: 'CmdOrCtrl+F4',
           label: 'Close tab',
@@ -115,6 +111,13 @@ export const getMainMenu = (viewManager: ViewManager) => {
             });
           },
         },
+        {
+          type: 'separator',
+        },
+        {
+          role: 'quit',
+          accelerator: 'CmdOrCtrl+Shift+Q',
+        }
       ],
     },
     { role: 'editMenu' },
