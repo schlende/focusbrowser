@@ -84,15 +84,23 @@ export const InputContainer = styled.div`
   height: 28px;
 `;
 
-export const UpdateIndicatorIcon = styled('div')`
-  ${centerIcon()};
-  background-image: url(${icons.fire});
-  height: 16px;
-  min-width: 16px;
-  margin-left: 10px;
-  ${({ theme }: { theme?: ITheme }) => css`
-    filter: ${theme['overlay.foreground'] === 'light'
-      ? 'invert(100%)'
-      : 'none'};
-  `}
+export const UpdateButtonToolTip = styled('div')`
+  position: relative;
+`;
+
+export const UpdateButtonToolTipText = styled('span')`
+  width: 120px;
+  right: 105%;
+  background - color: #555;
+  color: #fff;
+  text - align: center;
+  border - radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z - index: 1;
+  bottom: 125 %;
+  left: 50 %;
+  margin - left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
 `;

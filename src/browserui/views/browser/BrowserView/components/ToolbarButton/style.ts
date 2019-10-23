@@ -55,6 +55,37 @@ export const Button = styled('div')`
   `};
 `;
 
+
+export const Tooltip = styled('div')`
+  display: inline;
+  position: absolute;
+  right: 108%;
+  border-radius: 8px;
+  padding: 8px;
+  width: 110px;
+  text-align: center;
+  vertical-align: middle;
+  top: 8px;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: rgba(255, 255, 255, 1);
+  font-size: 13px;
+  pointer-events: none;
+  ${({ visible }: { visible: boolean }) => css`
+    display: ${visible ? 'visible' : 'none'};
+  `};
+  z-index: 3;
+  ::after {
+    content: " ";
+    position: absolute;
+    top: 40%;
+    left: 100%; /* To the right of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(0, 0, 0, 0.65);
+  }
+`
+
 export const Circle = styled('div')`
   border-radius: 50%;
   width: 30px;
