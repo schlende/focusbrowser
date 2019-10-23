@@ -36,8 +36,6 @@ export class DomainResolver {
               ipfsNode.loadIPFSSite(url).then((response: string) => {
                 console.log("Got IPFS response: " + response);
                 destUrl = 'data:text,' + encodeURI(response);
-
-                resolve({ url: showUrl, dest: destUrl });
               });
             } else {
               if (showUrl.indexOf('ipfs://brad.zil') != -1) {
@@ -47,10 +45,10 @@ export class DomainResolver {
               } else {
                 destUrl = "https://cloudflare-ipfs.com/ipfs/QmWcLKHWqrRB95zQnb4vX8RRgoGsVm5YAUHyZyiAw4mCMQ/";
               }
-
-              resolve({ url: showUrl, dest: destUrl });
             }
           }
+
+          resolve({ url: showUrl, dest: destUrl });
         });
       } else {
         resolve({ url: undefined, dest: url });
@@ -59,7 +57,7 @@ export class DomainResolver {
   }
 
   public static resolveZil(domain: string) {
-    let resolveFrom = 'https://unstoppabledomains.com/api/record/zil?label=' + domain;
+    let resolveFrom = 'https://unstoppabledomains.com/api/v1/' + domain + '.zil'
     return new Promise((resolve, reject) => {
       axios.get(resolveFrom).then((response) => {
         if (response.data['ipfs'] && response.data.ipfs['html']) {
