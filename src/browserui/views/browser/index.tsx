@@ -5,7 +5,6 @@ import browserSession, { BrowserSession } from "~/browserui/models/browser-sessi
 import { observer } from "mobx-react-lite";
 import styled from "styled-components";
 import { ipcRenderer } from 'electron';
-import { SettingsPage } from './SettingsPage';
 
 const { dialog } = require('electron').remote;
 var fs = require('fs');

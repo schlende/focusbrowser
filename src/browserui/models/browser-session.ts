@@ -1,6 +1,7 @@
 import { observable, computed, action } from 'mobx';
 import { ITab } from "~/browserui/models/tab";
 import { ipcRenderer } from 'electron';
+import { BrowserSettings } from '~/browserui/models/browser-settings';
 
 export class BrowserSession{
 
@@ -30,6 +31,8 @@ export class BrowserSession{
       this.updateAvailable = true;
     });
   }
+
+  public settings: BrowserSettings = new BrowserSettings();
 
   public tabs: ITab[] = observable.array([], { deep: false });
 
@@ -107,5 +110,5 @@ export class BrowserSession{
   }
 }
 
-const browserSession = new BrowserSession()
+const browserSession = new BrowserSession();
 export default browserSession;
