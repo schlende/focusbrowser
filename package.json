@@ -1,13 +1,14 @@
 {
-  "name": "focusbrowser",
-  "appId": "com.wildnotion.focusbrowser",
+  "name": "Unstoppable Browser",
+  "appId": "com.wildnotion.unstoppablebrowser",
   "version": "0.0.3",
-  "description": "A browser designed to help people stay focused",
+  "description": "A browser that reads zil DNS entries off the blockchain",
   "main": "build/bundle-electron.js",
   "scripts": {
     "dev": "cross-env ENV='dev' webpack-dev-server --config webpack.config.browserui.js",
     "build": "npx webpack --config webpack.config.electron.js && npx webpack --config webpack.config.browserui.js",
     "compile-darwin": "npm run build && electron-builder -m -p always",
+    "compile-darwin-local": "npm run build && electron-builder -m",
     "compile-win": "npm run build && electron-builder -w -p always",
     "compile-mac-win": "npm run build && electron-builder -wm -p always",
     "start": "cross-env ENV='dev' electron .",

@@ -193,6 +193,20 @@ repo:
 owner: 
 ```
 
+### App signing and notorizing Applicaitonon on Mac
+
+#### App Signing
+
+In order for auto update to work you'll need a valid Apple Developer ID when you create a build. You'll also need your developer certificate to be installed locally on your computer in your keychain.
+
+[Instructions for code signing](https://www.electron.build/code-signing)
+
+#### Notorizing
+
+Starting with MacOS 10.14.5, all signed applications by ‘new’ developers will need to be notarized or they will trigger Apple’s Gatekeeper software and prevent users from installing your app.
+
+https://kilianvalkhof.com/2019/electron/notarizing-your-electron-application/
+
 # Contributing
 
 If you have found any bugs or questions feel free to open an issue. If you are interested in working with [Unstoppable Domains](https://unstoppabledomains.com/) please get in touch via the Unstoppable Domains website.
