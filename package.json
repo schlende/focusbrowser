@@ -1,5 +1,5 @@
 {
-  "name": "Unstoppable Browser",
+  "name": "unstoppablebrowser",
   "appId": "com.wildnotion.unstoppablebrowser",
   "version": "0.0.3",
   "description": "A browser that reads zil DNS entries off the blockchain",
