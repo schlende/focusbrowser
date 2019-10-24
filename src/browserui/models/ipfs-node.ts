@@ -18,6 +18,7 @@ class IPFSNode {
         } catch (err) {
           console.error(err)
           reject(err);
+          return;
         }
       }
 

@@ -3,6 +3,9 @@
 import ipfsNode from '../models/ipfs-node';
 import { hostname } from 'os';
 import axios from 'axios';
+import { Namicorn } from 'namicorn';
+
+const namicorn = new Namicorn();
 
 export class DomainResolver {
   constructor() {
@@ -27,6 +30,7 @@ export class DomainResolver {
 
       if (extension == 'zil') {
         showUrl = url.replace('http://', 'ipfs://');
+        // DomainResolver.resolveZilBlockchain(domain).then((zilResult) => { })
 
         DomainResolver.resolveZil(domain).then((zilResult) => {
           if (zilResult) {
@@ -41,12 +45,30 @@ export class DomainResolver {
             }
           }
 
-          resolve({ url: showUrl, dest: destUrl });
+          if (destUrl && showUrl) {
+            resolve({ url: showUrl, dest: destUrl });
+          } else {
+            reject("Bad show / dest url");
+          }
         });
+
+
       } else {
         resolve({ url: undefined, dest: url });
       }
     });
+  }
+
+  public static resolveZilBlockchain(domain: string) {
+    return new Promise((resolve, reject) => {
+
+      let dmn = 'resolver.eth';
+
+      namicorn.address(dmn, 'ETH')
+        .then((response:any) => {
+          console.log(dmn, ' resolves to', response)
+        }).catch(console.error)
+    })
   }
 
   public static resolveZil(domain: string) {
