@@ -16,6 +16,10 @@ export class BrowserSession{
       this.addTab('https://google.com');
     });
 
+    ipcRenderer.on('open-settings', (e) => {
+      this.selectedTab.url = 'settings';
+    });
+
     ipcRenderer.on('api-remove-tab', (e, id) => {
       console.log("Remove tab " + id);
       let tab: ITab = this.tabs.find(tab => tab.viewId === id);

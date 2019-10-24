@@ -15,9 +15,6 @@ export const getMainMenu = (viewManager: ViewManager) => {
           },
         },
         {
-          type: 'separator',
-        },
-        {
           accelerator: 'CmdOrCtrl+W',
           label: 'Close tab',
           click() {
@@ -30,6 +27,14 @@ export const getMainMenu = (viewManager: ViewManager) => {
           accelerator: 'CmdOrCtrl+R',
           click: () => {
             viewManager.selected.webContents.reload();
+          },
+        },
+        {
+          accelerator: 'CmdOrCtrl+,',
+          label: 'Settings',
+          visible: true,
+          click() {
+            viewManager.window.webContents.send('open-settings');
           },
         },
         // {

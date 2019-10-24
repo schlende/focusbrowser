@@ -76,6 +76,7 @@ export class ITab {
 
     if(url == "settings"){
       this.settingsPage = true;
+      this.title = 'Settings';
     }else{
       DomainResolver.resolve(url).then((response: any) => {
         ipcRenderer.send(`load-new-url-${this.viewId}`, response.dest, response.url);
