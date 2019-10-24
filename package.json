@@ -47,7 +47,7 @@
     "ipfs-http-client": "^38.2.1",
     "mobx": "^5.14.2",
     "mobx-react-lite": "^1.4.1",
-    "namicorn": "^0.2.38",
+    "namicorn": "^0.2.40",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-hot-loader": "^4.12.13",
