@@ -20,7 +20,9 @@ export const SettingsPage = observer(({ visible, browserSession }: { visible: bo
   let settings:BrowserSettings = browserSession.settings;
 
   var pageStyle: any = {
-    display: visible ? "block" : "none"
+    display: visible ? "block" : "none",
+    overflowY: 'auto',
+    paddingBottom: '30px'
   }
 
   return (

@@ -2,20 +2,23 @@ import styled, { css } from 'styled-components';
 
 export const SettingsHeader = styled('div')`
   box-sizing: border-box;
-  background-color: #0066FF;
+  background-color: #3367d6;
   color: white;
   width: 100%;
-  height: 40px;
-  line-height: 40px;
+  height: 60px;
+  font-size: 1.5em;
+  line-height: 60px;
   padding-left: 10%;
   padding-right: 10%;
 `;
 
 export const Box1 = styled('div')`
   line-height: 3;
+  margin-top: 10px;
+  margin-bottom: 5px;
   margin-left: 10%;
   margin-right: 10%;
-  font-size: 15px;
+  font-size: 1.3em;
   font-weight: bold;
 `;
 
@@ -30,7 +33,7 @@ export const Box2 = styled('div')`
   line-height: 2;
   padding-left: 30px;
   width: 100%;
-  font-size: 15px;
+  font-size: 1em;
   padding-bottom:12px;
   background-color: none;
 `;
