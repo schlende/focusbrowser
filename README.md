@@ -182,7 +182,6 @@ Run the compile command
 A release should get generated on your local machine in the dist folder and should get uploaded to github
 
 You should be able to see the release on github under the releases tab
-```
 
 To test the auto-update feature locally you will need to create a local dev-app-update.yml file in the root directory with the following contents.
 
