@@ -45,8 +45,8 @@ export const SettingsPage = observer(({ visible, browserSession }: { visible: bo
               <OptionLabel>Unstoppable.com API -</OptionLabel> <OptionLabel2> Non-parnoid + fast response times</OptionLabel2>
             </div>
             <div>
-              <RadioButton type="radio" name="domain" value="2" onChange={() => { handleDomainLookupMethodChange(DomainResolutionMethod.ZilliquaApi) }} checked={settings.domainResolutionMethod === DomainResolutionMethod.ZilliquaApi} />
-              <OptionLabel>Zilliqua API -</OptionLabel> <OptionLabel2> Non-parnoid + fast response times</OptionLabel2>
+              <RadioButton type="radio" name="domain" value="2" onChange={() => { handleDomainLookupMethodChange(DomainResolutionMethod.ZilliqaApi) }} checked={settings.domainResolutionMethod === DomainResolutionMethod.ZilliqaApi} />
+              <OptionLabel>Zilliqa API -</OptionLabel> <OptionLabel2> Non-parnoid + fast response times</OptionLabel2>
             </div>
             <div>
               <RadioButton type="radio" name="domain" value="3" onChange={() => { handleDomainLookupMethodChange(DomainResolutionMethod.DirectBlockchainLookup) }} checked={settings.domainResolutionMethod === DomainResolutionMethod.DirectBlockchainLookup} />
@@ -69,15 +69,15 @@ export const SettingsPage = observer(({ visible, browserSession }: { visible: bo
           </Header1>
           <div>
             <div>
-              <RadioButton type="radio" name="content" value="1" onChange={() => { handleIPFSMethodChange(IPFSContentMethod.CloudflareCDN) }} checked={settings.ipfsContentMethod === IPFSContentMethod.CloudflareCDN} />
+              <RadioButton type="radio" name="content" value="1" onChange={() => { handleIPFSMethodChange(IPFSContentMethod.CloudflareCDN) }} checked={settings.ipfsContentMethod == IPFSContentMethod.CloudflareCDN} />
               <OptionLabel>Cloudlare CDN -</OptionLabel> <OptionLabel2> Non-parnoid + fast response times</OptionLabel2>
             </div>
             <div>
-              <RadioButton type="radio" name="content" value="2" onChange={() => { handleIPFSMethodChange(IPFSContentMethod.InfuraAPI) }} checked={settings.ipfsContentMethod === IPFSContentMethod.InfuraAPI} />
+              <RadioButton type="radio" name="content" value="2" onChange={() => { handleIPFSMethodChange(IPFSContentMethod.InfuraAPI) }} checked={settings.ipfsContentMethod == IPFSContentMethod.InfuraAPI} />
               <OptionLabel>Infura API -</OptionLabel> <OptionLabel2> Non-parnoid + fast response times</OptionLabel2>
             </div>
             <div>
-              <RadioButton type="radio" name="content" value="3" onChange={() => { handleIPFSMethodChange(IPFSContentMethod.DesignatedIPFSNode) }} checked={settings.ipfsContentMethod === IPFSContentMethod.DesignatedIPFSNode} />
+              <RadioButton type="radio" name="content" value="3" onChange={() => { handleIPFSMethodChange(IPFSContentMethod.DesignatedIPFSNode) }} checked={settings.ipfsContentMethod == IPFSContentMethod.DesignatedIPFSNode} />
               <OptionLabel>Designted IPFS Node -</OptionLabel> <OptionLabel2> Non-parnoid + slow response times</OptionLabel2>
             </div>
             <Topic1>

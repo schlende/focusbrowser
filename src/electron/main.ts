@@ -1,9 +1,9 @@
-import { BrowserWindow, App, BrowserView, Menu, dialog } from 'electron';
+import { BrowserWindow, App, BrowserView, Menu, dialog, ipcMain } from 'electron';
 import { resolve, join } from 'path';
 import { ViewManager } from '~/electron/view-manager';
 import { getMainMenu } from '~/electron/mainmenu';
-import { FindWindow } from '~/electron/window/find';
 import { AppUpdater } from '~/electron/app-updater';
+import { Store } from '~/electron/store/datastore';
 
 export default class Main {
   static mainWindow: BrowserWindow;
@@ -39,6 +39,27 @@ export default class Main {
     Menu.setApplicationMenu(getMainMenu(this.viewManager));
 
     // let find:FindWindow = new FindWindow(Main.mainWindow);
+
+    const store = new Store({
+      configName: 'settings-data',
+      defaults: {
+        settings: {
+          domainResolutionMethod: 'UnstoppableAPI',
+          ipfsContentMethod: 'CloudflareCDN'
+        }
+      }
+    });
+
+    ipcMain.on('load-settings', (event) => {
+      let settings: any = store.get('settings');
+      console.log("Settings loaded " + JSON.stringify(settings));
+      event.returnValue = settings;
+    })
+
+    ipcMain.on('save-settings', (event, settings) => {
+      console.log("Saving settings " + JSON.stringify(settings));
+      store.set('settings', settings);
+    })
 
     Main.mainWindow.on('closed', Main.onClose);
 
