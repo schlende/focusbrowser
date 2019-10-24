@@ -28,8 +28,6 @@ export class ViewManager {
 
 
     ipcMain.on('set-browser-visibility', (event, visible) => {
-      console.log("Setting visibility " + visible);
-
       this.visible = visible;
       if(visible && this.currentView){
         this.window.setBrowserView(this.currentView);
