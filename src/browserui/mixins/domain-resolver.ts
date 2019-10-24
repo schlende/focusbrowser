@@ -32,19 +32,12 @@ export class DomainResolver {
           if (zilResult) {
             destUrl = "https://cloudflare-ipfs.com/ipfs/" + zilResult + "/";
           } else {
-            if (showUrl.indexOf('ipfs://raw.zil') != -1) {
-              ipfsNode.loadIPFSSite(url).then((response: string) => {
-                console.log("Got IPFS response: " + response);
-                destUrl = 'data:text,' + encodeURI(response);
-              });
+            if (showUrl.indexOf('ipfs://brad.zil') != -1) {
+              destUrl = "https://cloudflare-ipfs.com/ipfs/QmefehFs5n8yQcGCVJnBMY3Hr6aMRHtsoniAhsM1KsHMSe/";
+            } else if (showUrl.indexOf('ipfs://matt.zil') != -1) {
+              destUrl = "https://cloudflare-ipfs.com/ipfs/QmUD69diRF8jwju2k4b9mD7PaXMjtMAKafqascL18VKvoD/";
             } else {
-              if (showUrl.indexOf('ipfs://brad.zil') != -1) {
-                destUrl = "https://cloudflare-ipfs.com/ipfs/QmefehFs5n8yQcGCVJnBMY3Hr6aMRHtsoniAhsM1KsHMSe/";
-              } else if (showUrl.indexOf('ipfs://matt.zil') != -1) {
-                destUrl = "https://cloudflare-ipfs.com/ipfs/QmUD69diRF8jwju2k4b9mD7PaXMjtMAKafqascL18VKvoD/";
-              } else {
-                destUrl = "https://cloudflare-ipfs.com/ipfs/QmWcLKHWqrRB95zQnb4vX8RRgoGsVm5YAUHyZyiAw4mCMQ/";
-              }
+              destUrl = "https://cloudflare-ipfs.com/ipfs/QmWcLKHWqrRB95zQnb4vX8RRgoGsVm5YAUHyZyiAw4mCMQ/";
             }
           }
 

@@ -15,7 +15,6 @@ export const SettingsHeader = styled('div')`
 export const Box1 = styled('div')`
   line-height: 3;
   margin-top: 10px;
-  margin-bottom: 5px;
   margin-left: 10%;
   margin-right: 10%;
   font-size: 1.3em;
@@ -23,6 +22,7 @@ export const Box1 = styled('div')`
 `;
 
 export const Header1 = styled('div')`
+  margin-bottom: 10px;
   border-bottom: 1px solid #b5a5a5;
   line-height: 3;
   background-color: none;
