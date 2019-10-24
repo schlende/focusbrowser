@@ -40,18 +40,12 @@ export class BrowserSession{
   };
 
   @observable
-<<<<<<< HEAD
-<<<<<<< HEAD
   public updateAvailable: boolean = false;
 
   @observable
-=======
->>>>>>> Minor changes to page content and structure
   public showSettings: boolean = false;
 
   @observable
-=======
->>>>>>> settings page is now tied to tabs... so you can switch between tabs and get the right settings
   private _selectedTab: ITab;
 
   @observable
