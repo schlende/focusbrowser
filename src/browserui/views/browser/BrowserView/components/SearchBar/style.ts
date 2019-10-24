@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 import { icons, transparency } from '~/browserui/resources/constants';
-import { ITheme } from '~/browserui/interfaces';
 import { centerIcon } from '~/browserui/mixins';
 import { platform } from 'os';
 
@@ -41,11 +40,6 @@ export const SearchIcon = styled('div')`
   height: 16px;
   min-width: 16px;
   margin-left: 10px;
-  ${({ theme }: { theme?: ITheme }) => css`
-    filter: ${theme['overlay.foreground'] === 'light'
-      ? 'invert(100%)'
-      : 'none'};
-  `}
 `;
 
 export const Form = styled('form')`
@@ -60,21 +54,10 @@ export const Input = styled('input')`
   background-color: transparent;
   border: none;
   outline: none;
-  color: white;
+  color: black;
   font-size: 14px;
   margin-left: 10px;
   margin-right: 16px;
-  ${({ theme }: { theme?: ITheme }) => css`
-    color: ${theme['overlay.foreground'] === 'light'
-      ? 'white'
-      : `rgba(0, 0, 0, ${transparency.text.high})`};
-    &::placeholder {
-      color: rgba(255, 255, 255, 0.54);
-      color: ${theme['overlay.foreground'] === 'light'
-        ? `rgba(255, 255, 255, ${transparency.text.medium})`
-        : `rgba(0, 0, 0, ${transparency.text.medium})`};
-    }
-  `}
 `;
 
 export const InputContainer = styled.div`
