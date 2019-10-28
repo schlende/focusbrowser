@@ -17,7 +17,7 @@
 [Unstoppable Domains](https://unstoppabledomains.com) is building a new DNS system. Unlike traditional DNS systems (which store domain data on centrally managed servers) Unstoppable DNS data is stored on the blockchain. This architecture has two big benefits. 
 
 * **Domain lookups are impossible to block**
-* **Domain names are impossible to sieze**
+* **Domain names are impossible to seize**
 
 By combining blockchain domains with websites and content hosted on peer-to-peer filesystems you can build and deploy your own uncensorable website, content, and service. 
 
