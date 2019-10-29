@@ -21,7 +21,11 @@
     "publishAutoUpdate": true
   },
   "mac": {
-    "category": "public.app-category.navigation"
+    "category": "public.app-category.navigation",
+    "hardenedRuntime" : true,
+    "gatekeeperAssess": false,
+    "entitlements": "build/entitlements.mac.plist",
+    "entitlementsInherit": "build/entitlements.mac.plist"
   },
   "win": {
     "target": [

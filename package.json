@@ -1,7 +1,7 @@
 {
   "name": "unstoppablebrowser",
-  "appId": "com.wildnotion.unstoppablebrowser",
-  "version": "0.0.3",
+  "appId": "com.unstoppable.unstoppablebrowser",
+  "version": "0.0.4",
   "description": "A browser that reads zil DNS entries off the blockchain",
   "main": "build/bundle-electron.js",
   "scripts": {
@@ -13,6 +13,7 @@
     "compile-mac-win": "npm run build && electron-builder -wm -p always",
     "start": "cross-env ENV='dev' electron .",
     "prestart": "npm run build",
+    "afterSign": "scripts/notarize.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,7 +25,7 @@
     "internet",
     "addiction"
   ],
-  "author": "Walt Schlender",
+  "author": "Unstoppable Domains",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/schlende/focusbrowser/issues"
@@ -40,6 +41,7 @@
     "electron": "^6.1.1",
     "electron-builder": "^21.2.0",
     "electron-log": "^3.0.8",
+    "electron-notarize": "^0.1.1",
     "electron-updater": "4.1.2",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
