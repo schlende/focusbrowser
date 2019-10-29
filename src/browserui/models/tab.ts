@@ -74,6 +74,8 @@ export class ITab {
       return;
     }
 
+    this.urlBarValue = url;
+
     if(url == "settings"){
       this.settingsPage = true;
       this.title = 'Settings';
