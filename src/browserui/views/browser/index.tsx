@@ -5,11 +5,12 @@ import browserSession, { BrowserSession } from "~/browserui/models/browser-sessi
 import { observer } from "mobx-react-lite";
 import styled from "styled-components";
 import { ipcRenderer } from 'electron';
+import { EmptyTab } from "~/browserui/views/browser/BrowserView/components/EmptyTab";
 
 const { dialog } = require('electron').remote;
 var fs = require('fs');
 
-browserSession.visible = true;
+browserSession.visible = false;
 
 const TopBar = styled('div') `
   position: absolute;
@@ -23,7 +24,8 @@ const TopBar = styled('div') `
 ReactDOM.render(
   <div>
     <TopBar />
-    <BrowserView browserSession={browserSession} />
+    {/* <BrowserView browserSession={browserSession} /> */}
+    <EmptyTab />
   </div>,
   document.getElementById("app")
 );
