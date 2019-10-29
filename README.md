@@ -196,9 +196,25 @@ owner:
 
 #### App Signing
 
-In order for auto update to work you'll need a valid Apple Developer ID when you create a build. You'll also need your developer certificate to be installed locally on your computer in your keychain.
+If you want to build a mac executable where auto-update works, you'll need to do the following.
 
-[Instructions for code signing](https://www.electron.build/code-signing)
+1. Download XCode
+2. Sign up for an Apple Developer Account
+3. Open your local Keychain and generate a key for Apple to notorize
+  1. Keychain Access --> Certificate Assistant --> Request a certificate from a certificate authority
+  2. Save the generated file to your desktop
+4. Notorize your generated file on developer.apple.com
+  1. Certificates --> + --> Apple Distribution
+  2. Upload the generated file for notorization
+  3. Download the resulting production.cer file
+5. Double click production.cer to put it into your keychain
+  * Note... at first we didn't have XCode installed and were getting errors about certificate not being trusted... so you'll need to install XCode for this to work
+
+After this running `npm run compile-darwin` will generate and upload a signed version of the browser to github.
+
+If you just want to test building a browser locally you can run `npm run compile-darwin-local`.
+
+It can be hard to know if the app signing process is working. I found an application called [RBAppChecker Lite](https://brockerhoff.net/RB/AppCheckerLite/) that allowed me to see the signature information and make sure it was correct.
 
 #### Notorizing
 
