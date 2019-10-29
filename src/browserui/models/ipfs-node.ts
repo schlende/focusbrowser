@@ -16,22 +16,14 @@ class IPFSNode {
           const id = await this.ipfsNode.id();
           console.log("Node ready " + id);
         } catch (err) {
-          console.error(err)
+          console.error(err);
           reject(err);
         }
       }
 
-      console.log("Doing lookup");
-      address = 'QmPChd2hVbrJ6bfo3WBcTW4iZnpHm8TEzWkLHmLpXhF68A';
-      // address = 'QmWcLKHWqrRB95zQnb4vX8RRgoGsVm5YAUHyZyiAw4mCMQ';
-
-      // this.ipfsNode.get(address, (error: any, files: any) => {
-      //   console.log("Got a response");
-      //   debugger;
-      // });
-
-      const resp: string = await this.ipfsNode.cat(address);
-      resolve(resp);
+      const resp: any = await this.ipfsNode.get(address);
+      debugger;
+      
     })
   }
 }
