@@ -61,6 +61,22 @@ export default class Main {
       store.set('settings', settings);
     })
 
+    ipcMain.on(`window-toggle-maximize`, () => {
+      if (Main.mainWindow.isMaximized()) {
+        Main.mainWindow.unmaximize();
+      } else {
+        Main.mainWindow.maximize();
+      }
+    });
+
+    ipcMain.on(`window-minimize`, () => {
+      Main.mainWindow.minimize();
+    });
+
+    ipcMain.on(`window-close`, () => {
+      Main.mainWindow.close();
+    });
+
     Main.mainWindow.on('closed', Main.onClose);
 
     if (process.env.ENV === 'dev') {
