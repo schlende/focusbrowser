@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { SettingsHeader, Box1, Box2, Header1, LearnMoreButton, OptionLabel, OptionLabel2, Topic1, RadioButton } from './style';
 import { BrowserSession } from "~/browserui/models/browser-session";
 import { BrowserSettings, IPFSContentMethod, DomainResolutionMethod } from "~/browserui/models/browser-settings";
+import { version } from "../../../../../../../package.json";
 
 let currentSession: BrowserSession = null;
 
@@ -28,7 +29,7 @@ export const SettingsPage = observer(({ visible, browserSession }: { visible: bo
   return (
     <div style={pageStyle}>
       <SettingsHeader>
-        Settings
+        Settings [version {version}]
       </SettingsHeader>
       <Box1>
         Domain
