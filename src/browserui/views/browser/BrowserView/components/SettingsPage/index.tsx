@@ -8,12 +8,29 @@ import { version } from "../../../../../../../package.json";
 
 let currentSession: BrowserSession = null;
 
-export const handleIPFSMethodChange = (newMethod: IPFSContentMethod) => {
+const handleIPFSMethodChange = (newMethod: IPFSContentMethod) => {
   currentSession.settings.ipfsContentMethod = newMethod;
 }
 
-export const handleDomainLookupMethodChange = (newMethod: DomainResolutionMethod) => {
+const handleDomainLookupMethodChange = (newMethod: DomainResolutionMethod) => {
   currentSession.settings.domainResolutionMethod = newMethod;
+}
+
+
+const SettingsHeaderText = () => {
+  if(currentSession.updateAvailable){
+    return (
+      <div>
+        Settings [version {version} -- Update Available]
+      </div>
+    );
+  }else{
+    return (
+      <div>
+        Settings [version {version}]
+      </div>
+    );
+  }
 }
 
 export const SettingsPage = observer(({ visible, browserSession }: { visible: boolean, browserSession: BrowserSession }) => {
@@ -29,7 +46,7 @@ export const SettingsPage = observer(({ visible, browserSession }: { visible: bo
   return (
     <div style={pageStyle}>
       <SettingsHeader>
-        Settings [version {version}]
+        { SettingsHeaderText() }
       </SettingsHeader>
       <Box1>
         Domain
