@@ -45,6 +45,7 @@ export class AppUpdater {
     public checkForUpdates(autoDownload: boolean) {
         console.log('checkForUpdates() called');
         autoUpdater.autoDownload = autoDownload;
+        autoUpdater.autoInstallOnAppQuit = false;
         autoUpdater.checkForUpdates();
     }
 
