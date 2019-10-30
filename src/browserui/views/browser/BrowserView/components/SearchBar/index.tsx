@@ -28,7 +28,7 @@ const AutoUpdateButton = () => {
     return (
       <ToolbarButton
         size={20}
-        tooltip='Update available!'
+        tooltip='A new update is ready!'
         icon={icons.download}
         onClick={handleUpdateClick} />
     )
