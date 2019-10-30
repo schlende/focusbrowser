@@ -58,6 +58,7 @@
     "typescript": "^3.6.3",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "react-windows-controls": "^1.1.1"
   }
 }

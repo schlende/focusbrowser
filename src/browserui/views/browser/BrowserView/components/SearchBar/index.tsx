@@ -39,8 +39,22 @@ const AutoUpdateButton = () => {
   }
 }
 
+const SettingsButton = () => {
+  return (
+    <ToolbarButton
+      size={20}
+      icon={icons.settings}
+      onClick={handleSettingsClick} />
+  )
+}
+
 const handleUpdateClick = () => {
   ipcRenderer.send('update-reaquested');
+}
+
+const handleSettingsClick = () => {
+  //Open settings page.
+  currentSession.selectedTab.url = 'settings';
 }
 
 export const SearchBox = observer(({ browserSession }: { browserSession: BrowserSession }) => {
@@ -68,6 +82,7 @@ export const SearchBox = observer(({ browserSession }: { browserSession: Browser
         </InputContainer>
       </StyledSearchBox>
       <AutoUpdateButton />
+      <SettingsButton />
     </StyledSearchBar>
   );
 });
