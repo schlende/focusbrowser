@@ -49,16 +49,17 @@
     "ipfs-http-client": "^38.2.1",
     "mobx": "^5.14.2",
     "mobx-react-lite": "^1.4.1",
+    "namicorn": "^0.2.42",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-hot-loader": "^4.12.13",
+    "react-windows-controls": "^1.1.1",
     "source-map-loader": "^0.2.4",
     "styled-components": "^4.3.2",
     "ts-loader": "^6.2.1",
     "typescript": "^3.6.3",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.9.0",
-    "react-windows-controls": "^1.1.1"
+    "webpack-dev-server": "^3.9.0"
   }
 }

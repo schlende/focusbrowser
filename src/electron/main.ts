@@ -86,8 +86,9 @@ export default class Main {
       Main.mainWindow.loadURL(join('file://', Main.application.getAppPath(), 'build/app.html'));
     }
 
+    let updater: AppUpdater = new AppUpdater(Main.mainWindow);
+
     Main.mainWindow.webContents.on('dom-ready', () => {
-      let updater: AppUpdater = new AppUpdater(Main.mainWindow);
       console.log("dom-ready -> checkForUpdates() called");
       updater.checkForUpdates(true);
     });
