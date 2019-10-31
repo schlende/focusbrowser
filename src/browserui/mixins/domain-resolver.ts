@@ -3,13 +3,19 @@
 import ipfsNode from '../models/ipfs-node';
 import { hostname } from 'os';
 import axios from 'axios';
+import { BrowserSettings, IPFSContentMethod } from '~/browserui/models/browser-settings';
 
 export class DomainResolver {
-  constructor() {
+  private CLOUDFLARE_CDN_BASE: string = 'https://cloudflare-ipfs.com/ipfs/';
+  private INFURA_CDN_BASE: string = 'https://ipfs.infura.io/ipfs/';
 
+  private browserSettings: BrowserSettings;
+
+  constructor(browserSettings: BrowserSettings) {
+    this.browserSettings = browserSettings;
   }
 
-  public static resolve(url: string) {
+  public resolve(url: string) {
     return new Promise((resolve, reject) => {
       let destUrl: string = undefined;
       let showUrl: string = undefined;
@@ -28,16 +34,16 @@ export class DomainResolver {
       if (extension == 'zil') {
         showUrl = url.replace('http://', 'ipfs://');
 
-        DomainResolver.resolveZil(domain).then((zilResult) => {
+        this.resolveZil(domain).then((zilResult) => {
           if (zilResult) {
-            destUrl = "https://cloudflare-ipfs.com/ipfs/" + zilResult + "/";
+            destUrl = this.cdnBaseUrl + zilResult + "/";
           } else {
             if (showUrl.indexOf('ipfs://brad.zil') != -1) {
-              destUrl = "https://cloudflare-ipfs.com/ipfs/QmefehFs5n8yQcGCVJnBMY3Hr6aMRHtsoniAhsM1KsHMSe/";
+              destUrl = this.cdnBaseUrl + "QmefehFs5n8yQcGCVJnBMY3Hr6aMRHtsoniAhsM1KsHMSe/";
             } else if (showUrl.indexOf('ipfs://matt.zil') != -1) {
-              destUrl = "https://cloudflare-ipfs.com/ipfs/QmUD69diRF8jwju2k4b9mD7PaXMjtMAKafqascL18VKvoD/";
+              destUrl = this.cdnBaseUrl + "QmUD69diRF8jwju2k4b9mD7PaXMjtMAKafqascL18VKvoD/";
             } else {
-              destUrl = "https://cloudflare-ipfs.com/ipfs/QmWcLKHWqrRB95zQnb4vX8RRgoGsVm5YAUHyZyiAw4mCMQ/";
+              destUrl = this.cdnBaseUrl + "QmWcLKHWqrRB95zQnb4vX8RRgoGsVm5YAUHyZyiAw4mCMQ/";
             }
           }
 
@@ -49,7 +55,7 @@ export class DomainResolver {
     });
   }
 
-  public static resolveZil(domain: string) {
+  public resolveZil(domain: string) {
     let resolveFrom = 'https://unstoppabledomains.com/api/v1/' + domain + '.zil'
     return new Promise((resolve, reject) => {
       axios.get(resolveFrom).then((response) => {
@@ -62,5 +68,16 @@ export class DomainResolver {
         }
       });
     });
+  }
+
+  public get cdnBaseUrl() {
+    switch (this.browserSettings.ipfsContentMethod) {
+      case IPFSContentMethod.CloudflareCDN:
+        return this.CLOUDFLARE_CDN_BASE;
+      case IPFSContentMethod.InfuraAPI:
+        return this.INFURA_CDN_BASE;
+    }
+
+    return this.CLOUDFLARE_CDN_BASE;
   }
 }

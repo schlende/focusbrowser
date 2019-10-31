@@ -64,15 +64,15 @@ export const SettingsPage = observer(({ visible, browserSession }: { visible: bo
             </div>
             <div>
               <RadioButton type="radio" name="domain" value="2" onChange={() => { handleDomainLookupMethodChange(DomainResolutionMethod.ZilliqaApi) }} checked={settings.domainResolutionMethod === DomainResolutionMethod.ZilliqaApi} />
-              <OptionLabel>Zilliqa API -</OptionLabel> <OptionLabel2> Non-parnoid + fast response times</OptionLabel2>
+              <OptionLabel>Zilliqa API -</OptionLabel> <OptionLabel2> Direct blockchain lookup via API - non-parnoid + fast response times</OptionLabel2>
             </div>
-            <div>
+            {/* <div>
               <RadioButton type="radio" name="domain" value="3" onChange={() => { handleDomainLookupMethodChange(DomainResolutionMethod.DirectBlockchainLookup) }} checked={settings.domainResolutionMethod === DomainResolutionMethod.DirectBlockchainLookup} />
               <OptionLabel>Direct blockchain lookup -</OptionLabel> <OptionLabel2> Non-parnoid + slow response times</OptionLabel2>
             </div>
             <Topic1>
               <OptionLabel>Read address from - </OptionLabel><input type="text" name="firstname" />
-            </Topic1>
+            </Topic1> */}
           </div>
         </Box2>
       </Box1>
@@ -94,7 +94,7 @@ export const SettingsPage = observer(({ visible, browserSession }: { visible: bo
               <RadioButton type="radio" name="content" value="2" onChange={() => { handleIPFSMethodChange(IPFSContentMethod.InfuraAPI) }} checked={settings.ipfsContentMethod == IPFSContentMethod.InfuraAPI} />
               <OptionLabel>Infura API -</OptionLabel> <OptionLabel2> Non-parnoid + fast response times</OptionLabel2>
             </div>
-            <div>
+            {/* <div>
               <RadioButton type="radio" name="content" value="3" onChange={() => { handleIPFSMethodChange(IPFSContentMethod.DesignatedIPFSNode) }} checked={settings.ipfsContentMethod == IPFSContentMethod.DesignatedIPFSNode} />
               <OptionLabel>Designted IPFS Node -</OptionLabel> <OptionLabel2> Non-parnoid + slow response times</OptionLabel2>
             </div>
@@ -107,7 +107,7 @@ export const SettingsPage = observer(({ visible, browserSession }: { visible: bo
                 <RadioButton type="radio" name="content" value="5" />
                 <OptionLabel> Run your own local node (use more internet bandwidth) </OptionLabel>
               </div>
-            </Topic1>
+            </Topic1> */}
           </div>
         </Box2>
       </Box1>

@@ -80,7 +80,7 @@ export class ITab {
       this.settingsPage = true;
       this.title = 'Settings';
     }else{
-      DomainResolver.resolve(url).then((response: any) => {
+      new DomainResolver(this._session.settings).resolve(url).then((response: any) => {
         ipcRenderer.send(`load-new-url-${this.viewId}`, response.dest, response.url);
       });
     }
